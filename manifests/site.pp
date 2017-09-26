@@ -4,7 +4,7 @@ node default {# node default opening brace
     servers => [ 'clock.stellarcreativ.lab' ],
     }
   
-  # Disable ipv6 via sysctl
+  # Disable ipv6 via sysctl - this needs dracut -f if it breaks rpcbind
   sysctl { 'net.ipv6.conf.all.disable_ipv6': 
     value => '1' }
 
