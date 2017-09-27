@@ -8,6 +8,13 @@ node default {
   sysctl { 'net.ipv6.conf.all.disable_ipv6': 
     value => '1' }
 
+  # requires saz-sudo from the forge
+  class { 'sudo': }
+  sudo::conf { 'systems':
+    priority =>   10,
+    source =>   'puppet:///files/sudo/systems.conf',
+  }
+
 }
 
 node kam1.stellarcreative.lab {
@@ -19,10 +26,4 @@ node kam1.stellarcreative.lab {
 }
 
 node box49.stellarcreative.lab {
-  # requires saz-sudo from the forge
-  class { 'sudo': }
-  sudo::conf { 'systems':
-      priority =>  10,
-      source =>  'puppet:///files/sudo/systems.conf',
-   }
 }
