@@ -1,7 +1,6 @@
 node default {
   # mod 'razorsedge-openvmtools', '1.1.0'
-  #  include ::openvmtools
-  class { '::openvmtools': }
+  include ::openvmtools
 
   # Set ntp server
   class { '::ntp':
