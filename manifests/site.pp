@@ -1,4 +1,7 @@
 node default {
+  # mod 'razorsedge-openvmtools', '1.1.0'
+  include ::openvmtools
+
   # Set ntp server
   class { '::ntp':
     servers => [ 'clock.stellarcreativ.lab' ],
