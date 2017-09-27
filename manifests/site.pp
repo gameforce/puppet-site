@@ -1,4 +1,4 @@
-node default {# node default opening brace
+node default {
   # Set ntp server
   class { '::ntp':
     servers => [ 'clock.stellarcreativ.lab' ],
@@ -8,7 +8,7 @@ node default {# node default opening brace
   sysctl { 'net.ipv6.conf.all.disable_ipv6': 
     value => '1' }
 
-}# node default closing brace
+}
 
 node kam1.stellarcreative.lab {
   # Configure puppetdb and its underlying database
@@ -16,4 +16,11 @@ node kam1.stellarcreative.lab {
 
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config': }
+}
+
+node box49.stellarcreative.lab {
+  class { 'sudo': }
+  sudo::conf { 'systems':
+    source => 'puppet:///files/sudo/systems.conf',
+  }
 }
