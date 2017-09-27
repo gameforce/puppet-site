@@ -5,7 +5,7 @@ node default {
 
   # Set ntp server
   class { '::ntp':
-    servers => [ 'clock.stellarcreativ.lab' ],
+    servers => [ 'clock.stellarcreative.lab' ],
     }
   
   # Disable ipv6 via sysctl - this needs dracut -f if it breaks rpcbind
