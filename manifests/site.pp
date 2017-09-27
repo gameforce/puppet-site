@@ -20,12 +20,10 @@ node kam1.stellarcreative.lab {
 
 node box49.stellarcreative.lab {
   # requires saz-sudo from the forge
-    class sudo {
-
-    sudo::conf { 'systems':
-        priority =>  10,
-        source =>  'puppet:///files/sudo/systems.conf',
-
-       }
-   }
+  class { 'sudo': }
+  sudo::conf { 'systems':
+      priority =>  10,
+      source =>  'puppet:///files/sudo/systems.conf',
+     }
+  }
 }
