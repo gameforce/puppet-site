@@ -24,6 +24,5 @@ node box49.stellarcreative.lab {
   sudo::conf { 'systems':
       priority =>  10,
       source =>  'puppet:///files/sudo/systems.conf',
-     }
-  }
+   }
 }
