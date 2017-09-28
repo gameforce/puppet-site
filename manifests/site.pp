@@ -1,6 +1,10 @@
 node default {
   # mod 'razorsedge-openvmtools', '1.1.0'
-  class { 'openvmtools': }
+  include ::openvmtools
+  
+  class { '::openvmtools':
+  with_desktop => filse,
+  }
   
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
@@ -34,9 +38,5 @@ node kam1.stellarcreative.lab {
 }
 
 node box49.stellarcreative.lab {
-  # mod 'razorsedge-openvmtools', '1.1.0'
-  class { 'openvmtools': }
-  
-  # mod 'saz-motd', '2.4.0'
-  class { 'motd': }
+   notice "this is a notice"
 }
