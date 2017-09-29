@@ -16,8 +16,8 @@ node default {
   
   # Disable ipv6 via sysctl - this needs dracut -f if it breaks rpcbind
   # TODO: move disabling ipv6 to kickstart
-  sysctl { 'net.ipv6.conf.all.disable_ipv6': 
-    value => '1' }
+  # sysctl { 'net.ipv6.conf.all.disable_ipv6': 
+  #   value => '1' }
   
   # mod 'puppetlabs-firewall', '1.9.0' 
   class { 'firewall':
