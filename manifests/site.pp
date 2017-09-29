@@ -18,6 +18,11 @@ node default {
   # TODO: move disabling ipv6 to kickstart
   sysctl { 'net.ipv6.conf.all.disable_ipv6': 
     value => '1' }
+  
+  # mod 'puppetlabs-firewall', '1.9.0' 
+  class { 'firewall':
+    ensure => 'stopped',
+  }
 
   # mod 'saz-sudo', '4.2.0'
   class { 'sudo': }
