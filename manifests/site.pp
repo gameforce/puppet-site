@@ -31,15 +31,16 @@ node default {
     source =>   'puppet:///files/sudo/systems.conf',
   }
 
- class { 'autofs':
-  'mount_files' => {
-    'net' => {
-      mountpoint  => '/net',
-      file_source => 'puppet:///files/autofs/auto.net.data',
-    },
-    'job'  => {
-      mountpoint  => '/job',
-      file_source => 'puppet:///files/autofs/auto.job.data',
+  # mod 'yuav-autofs', '1.2.4'
+  class { 'autofs':
+   'mount_files' => {
+     'net' => {
+       mountpoint  => '/net',
+       file_source => 'puppet:///files/autofs/auto.net.data',
+     },
+     'job'  => {
+       mountpoint  => '/job',
+       file_source => 'puppet:///files/autofs/auto.job.data',
     }
   }
 } 
