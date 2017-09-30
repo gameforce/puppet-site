@@ -1,0 +1,2 @@
+ark    -fstype=nfs     srv1:/data/job/ark
+noah   -fstype=nfs     172.16.21.13:/Noah 
