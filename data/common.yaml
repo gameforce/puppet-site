@@ -1,0 +1,11 @@
+---
+autofs::mounts:
+  'net':
+    remote: 'srv1:/data/net'
+    mountpoint: '/net'
+    options: '-hard,rw'
+autofs::mount_entries:
+    '/etc/auto.net':
+      mountpoint: '/net'
+      mountfile: '/etc/auto.net'
+      options: '--timeout=300''
