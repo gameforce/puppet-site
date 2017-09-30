@@ -16,8 +16,8 @@ node default {
   
   # Disable ipv6 via sysctl - this needs dracut -f if it breaks rpcbind
   # TODO: move disabling ipv6 to kickstart
-  # sysctl { 'net.ipv6.conf.all.disable_ipv6': 
-  #   value => '1' }
+  sysctl { 'net.ipv6.conf.all.disable_ipv6': 
+    value => '1' }
   
   # mod 'puppetlabs-firewall', '1.9.0' 
   class { 'firewall':
@@ -33,19 +33,17 @@ node default {
 
   # mod 'yuav-autofs', '1.2.4'
   class { 'autofs':
-   'mount_files' => {
-     'net' => {
+    'mount_files' => {
+     'net' =>  { 
        mountpoint  => '/net',
        file_source => 'puppet:///files/autofs/auto.net.data',
-     },
+      },
      'job'  => {
        mountpoint  => '/job',
        file_source => 'puppet:///files/autofs/auto.job.data',
+      } 
     }
-  }
-} 
-
-
+  } 
 }
 
 node kam1.stellarcreative.lab {
