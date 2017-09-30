@@ -1,8 +1,7 @@
 # mod 'razorsedge-openvmtools', '1.1.0'
-include ::openvmtools
 
 class { '::openvmtools':
-  with_desktop => filse,
+  with_desktop => false,
 }
 
 # mod 'saz-motd', '2.4.0'
@@ -33,11 +32,11 @@ sudo::conf { 'systems':
 # mod 'yuav-autofs', '1.2.4'
 class { 'autofs':
   mount_files => {
-    net => {
+    net_data  => {
       mountpoint  => '/net',
       file_source => 'puppet:///files/autofs/auto.net.data',
     },
-    job => {
+    job_data  => {
       mountpoint  => '/job',
       file_source => 'puppet:///files/autofs/auto.job.data',
     }
