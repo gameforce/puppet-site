@@ -17,4 +17,5 @@ node kam1.stellarcreative.lab {
   }
 
 node box49.stellarcreative.lab {
+  include common
 }
