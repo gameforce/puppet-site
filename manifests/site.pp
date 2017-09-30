@@ -11,45 +11,45 @@ node default {
 
   # mod 'puppetlabs-ntp', '6.2.0'
   class { '::ntp':
-    servers => [ 'clock.stellarcreative.lab' ],
-    }
+  servers => [ 'clock.stellarcreative.lab' ],
+  }
   
   # Disable ipv6 via sysctl - this needs dracut -f if it breaks rpcbind
   # TODO: move disabling ipv6 to kickstart
-  sysctl { 'net.ipv6.conf.all.disable_ipv6': 
-    value => '1' }
+  sysctl { 'net.ipv6.conf.all.disable_ipv6':
+  value => '1' }
   
   # mod 'puppetlabs-firewall', '1.9.0' 
   class { 'firewall':
-    ensure => 'stopped',
+  ensure => 'stopped',
   }
 
   # mod 'saz-sudo', '4.2.0'
   class { 'sudo': }
   sudo::conf { 'systems':
-    priority =>   10,
-    source =>   'puppet:///files/sudo/systems.conf',
+  priority =>   10,
+  source   =>   'puppet:///files/sudo/systems.conf',
   }
 
   # mod 'yuav-autofs', '1.2.4'
   class { 'autofs':
-    'mount_files' => {
-     'net' =>  { 
-       mountpoint  => '/net',
-       file_source => 'puppet:///files/autofs/auto.net.data',
-      },
-     'job'  => {
-       mountpoint  => '/job',
-       file_source => 'puppet:///files/autofs/auto.job.data',
-      } 
-    }
-  } 
+  'mount_files' => {
+  'net' =>  {
+   mountpoint  => '/net',
+   file_source => 'puppet:///files/autofs/auto.net.data',
+   },
+  'job' => {
+   mountpoint  => '/job',
+   file_source => 'puppet:///files/autofs/auto.job.data',
+  }
+  }
+}
 }
 
 node kam1.stellarcreative.lab {
   # mod 'puppetlabs-firewall', '1.9.0' 
-    class { 'firewall':
-      ensure =>  'stopped',
+  class { 'firewall':
+    ensure =>  'stopped',
   }
             
   # mod 'puppetlabs-puppetdb', '6.0.1'
