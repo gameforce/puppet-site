@@ -40,7 +40,7 @@ class { 'autofs':
   mount_entries =>  {
     '/etc/auto.net' => {
       mountpoint => '/net'
-      mountfile  => '/etc/auto.net.data'
+      mountfile  => '/etc/auto.net.data',
       options    => '--timeout=300',
   mount_files   => {
     net_data  => {
