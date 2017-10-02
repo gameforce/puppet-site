@@ -2,7 +2,7 @@
 $bar = 'bar'
 file { "/etc/profile.d/stellar.sh":
   content => "export Foo=${bar}",
-  mode    => 0755,
+  mode    => '0644'
 }
 
 # mod 'razorsedge-openvmtools', '1.1.0'
