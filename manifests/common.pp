@@ -1,5 +1,11 @@
-# mod 'razorsedge-openvmtools', '1.1.0'
+# setup environment
+$bar = 'bar'
+file { "/etc/profile.d/stellar.sh":
+  content => "export Foo=${bar}",
+  mode    => 755
+}
 
+# mod 'razorsedge-openvmtools', '1.1.0'
 class { '::openvmtools':
   with_desktop => false,
 }
@@ -17,7 +23,7 @@ class { '::ntp':
 sysctl { 'net.ipv6.conf.all.disable_ipv6':
   value => '1' }
 
-# mod 'puppetlabs-firewall', '1.9.0' 
+# mod 'puppetlabs-firewall', '1.9.0'
 class { 'firewall':
   ensure => 'stopped',
 }
@@ -42,4 +48,3 @@ class { 'autofs':
     }
   }
 }
-
