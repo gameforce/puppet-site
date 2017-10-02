@@ -38,7 +38,7 @@ sudo::conf { 'systems':
 # mod 'yuav-autofs', '1.2.4'
 class { 'autofs':
   mount_entries =>  {
-    '/etc/auto.net' => {,
+    '/etc/auto.net' => {
       mountpoint => '/net',
       mountfile  => '/etc/auto.net.data',
       options    => '--timeout=300',
