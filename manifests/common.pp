@@ -1,7 +1,7 @@
 # setup environment
-$path = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:${PATH}'
+$stellarpath = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:${PATH}'
 file { "/etc/profile.d/stellar.sh":
-  content => "export PATH=${path}",
+  content => "export PATH=${stellarpath}",
   mode    => '0644'
 }
 
