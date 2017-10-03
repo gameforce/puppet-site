@@ -1,5 +1,5 @@
 # mod 'puppet-autofs', '4.0.0'
-autofs::mount { 'net':
+autofs::mount { '_net':
   mount       => '/net',
   mapfile     => '/etc/auto.net',
   mapcontents => ['* -user,rw,soft,intr,rsize=32768,wsize=32768,tcp,nfsvers=3,noacl srv1:/data/net'],
