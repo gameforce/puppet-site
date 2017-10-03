@@ -19,17 +19,18 @@ class puppet {
   }
 
   class { '::r10k::webhook::config':
-#    protected        => false,
-    use_mcollective => false,
+#    protected => false,
+    default_branch   => 'production',
+    use_mcollective  => false,
     public_key_path  => "/etc/puppetlabs/puppet/ssl/ca/signed/${facts['fqdn']}.pem",
     private_key_path => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['fqdn']}.pem",
-#    notify           => Service['webhook'],
+#    notify    => Service['webhook'],
   }
 
   class { '::r10k::webhook':
     user    => 'root',
     group   => 'root',
-#    require => Class['::r10k::webhook::config'],
+#    require   => Class['::r10k::webhook::config'],
   }
 }
 
