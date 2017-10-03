@@ -1,5 +1,16 @@
-home        -fstype=nfs    srv1:/data/net/home
-pipeline    -fstype=nfs    srv1:/data/net/pipeline
-systems     -fstype=nfs    srv1:/data/net/systems
-software    -fstype=nfs    srv1:/data/net/software
-autodesk    -fstype=nfs    srv1:/opt/Autodesk
+# managed by puppet
+
+# home directories
+home      -fstype=nfs,rw,soft  srv1:/data/net/home
+
+# pipeline
+pipeline  -fstype=nfs,rw,soft  srv1:/data/net/pipeline
+
+# systems
+systems   -fstype=nfs,rw,soft  srv1:/data/net/systems
+
+# software
+software  -fstype=nfs,rw,soft  srv1:/data/net/software
+
+# licensing
+autodesk  -fstype=nfs,rw,soft  srv1:/opt/Autodesk
