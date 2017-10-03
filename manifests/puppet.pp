@@ -19,7 +19,7 @@ class puppet {
   }
 
   class { '::r10k::webhook::config':
-    protected        => false,
+#    protected        => false,
     use_mcollective => false,
     public_key_path  => "/etc/puppetlabs/puppet/ssl/ca/signed/${facts['fqdn']}.pem",
     private_key_path => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['fqdn']}.pem",
@@ -27,8 +27,8 @@ class puppet {
   }
 
   class { '::r10k::webhook':
-    user    => 'puppet',
-    group   => 'puppet',
+    user    => 'root',
+    group   => '0',
     require => Class['::r10k::webhook::config'],
   }
 }
