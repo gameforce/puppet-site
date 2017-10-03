@@ -37,15 +37,16 @@ sudo::conf { 'systems':
 
 # mod 'yuav-autofs', '1.2.4'
 class { 'autofs':
-  mount_files      => {
-    net            => {
-      mountpoint   => '/net',
-      file_source  => 'puppet:///files/autofs/auto.net',
+  'mount_files'   => {
+    'net'         => {
+      mountpoint  => '/net',
+      file_source => 'puppet:///files/autofs/auto.net',
+      options     =>  'timeout=300',
       },
-    job            => {
-      mountpoint   => '/job',
-      file_source  => 'puppet:///files/autofs/auto.job',
-      options      => 'timeout=300',
+    'job'         => {
+      mountpoint  => '/job',
+      file_source => 'puppet:///files/autofs/auto.job',
+      options     => 'timeout=300',
       }
     }
   }
