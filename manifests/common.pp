@@ -37,7 +37,7 @@ sudo::conf { 'systems':
 
 # mod 'yuav-autofs', '1.2.4'
 class { 'autofs':
-  'mount_files'   => {
+  mount_files   => {
     'net'         => {
       mountpoint  => '/net',
       file_source => 'puppet:///files/autofs/auto.net',
