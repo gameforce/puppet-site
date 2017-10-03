@@ -1,3 +1,6 @@
+# includes
+include autofs
+
 # setup environment
 $stellarpath = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:${PATH}'
 file { "/etc/profile.d/stellar.sh":

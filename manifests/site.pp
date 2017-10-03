@@ -1,6 +1,5 @@
 node default {
   include common
-  include autofs
   }
 
 node kam1.stellarcreative.lab {
