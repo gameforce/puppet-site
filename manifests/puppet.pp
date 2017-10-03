@@ -23,13 +23,13 @@ class puppet {
     use_mcollective => false,
     public_key_path  => "/etc/puppetlabs/puppet/ssl/ca/signed/${facts['fqdn']}.pem",
     private_key_path => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['fqdn']}.pem",
-    notify           => Service['webhook'],
+#    notify           => Service['webhook'],
   }
 
   class { '::r10k::webhook':
     user    => 'root',
-    group   => '0',
-    require => Class['::r10k::webhook::config'],
+    group   => 'root',
+#    require => Class['::r10k::webhook::config'],
   }
 }
 
