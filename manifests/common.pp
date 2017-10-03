@@ -1,7 +1,8 @@
-class common {  
+class common {
   # includes
   include mounts
   include ::openvmtools
+}
 
   # setup environment
   $stellarpath = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:${PATH}'
@@ -34,4 +35,3 @@ class common {
     priority =>   10,
     source   =>   'puppet:///files/sudo/systems.conf',
   }
-}
