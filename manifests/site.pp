@@ -1,16 +1,21 @@
+# Needed for hiera v5
+# Merge several arrays of class names into one array:
+#lookup('classes', {merge =>  'hash'})
+
+# node defaults
 node default {
+  # includes
   include common
-  }
+  include mounts
+}
 
+# per-node includes
 node kam1.stellarcreative.lab {
-  # mod 'puppetlabs-puppetdb', '6.0.1'
-  # Configure puppetdb and its underlying database
-  class { 'puppetdb': }
-
-  # Configure the Puppet master to use puppetdb
-  class { 'puppetdb::master::config': }
-  }
+  # includes
+  include puppet
+}
 
 node box49.stellarcreative.lab {
-  #  includes
+  # includes
 }
+
