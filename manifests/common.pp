@@ -1,5 +1,4 @@
-class common {
-
+class common {  
   # includes
   include mounts
   include ::openvmtools

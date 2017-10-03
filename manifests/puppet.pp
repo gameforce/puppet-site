@@ -1,5 +1,4 @@
 class puppet {
-
   # mod 'puppetlabs-puppetdb', '6.0.1'
   # Configure puppetdb and its underlying database
   class { 'puppetdb': }
