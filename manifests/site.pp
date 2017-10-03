@@ -12,7 +12,7 @@ node default {
 # per-node includes
 node kam1.stellarcreative.lab {
   # includes
-  # include puppet
+  include puppet
 }
 
 node box49.stellarcreative.lab {
