@@ -1,7 +1,7 @@
 {
   "name": "production",
-  "signature": "393ff611179ba81c5c21d92e795779adf9c2b2b5",
-  "started_at": "2017-10-03 12:34:42 -0700",
-  "finished_at": "2017-10-03 12:34:42 -0700",
+  "signature": "cd42b13655d3c709897cab4484d0b7421e336ca6",
+  "started_at": "2017-10-03 12:36:19 -0700",
+  "finished_at": "2017-10-03 12:36:20 -0700",
   "deploy_success": true
 }
