@@ -1,4 +1,4 @@
-#class mounts { 
+class profile::mounts { 
   # enable browse mode in autofs.conf
   file_line { 'browse_mode':
     path  => '/etc/autofs.conf',
@@ -18,4 +18,4 @@
       }
     }
   }
-#}
+}
