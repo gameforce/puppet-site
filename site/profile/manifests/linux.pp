@@ -33,14 +33,19 @@ class profile::linux {
     priority =>   10,
     source   =>   'puppet:///files/sudo/systems.conf',
   }
+  class {'::adcli':
+  ad_domain        => 'stellarcreative.lab',
+  ad_join_username => 'systems',
+  ad_join_password => '#thx1138',
+  ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
+  }
 
   # mod 'walkamongus-sssd', '2.0.1'
   class { '::realmd':
   domain               => 'stellarcreative.lab',
   domain_join_user     => 'systems',
-  domain_join_password => '#thx1138',
-  krb_ticket_join    => true,
-  krb_keytab         => '/tmp/keytab',
+  krb_ticket_join    => false,
+#  krb_keytab         => '/etc/keytab',
   manage_sssd_config => true,
   sssd_config        => {
     'sssd' => {
