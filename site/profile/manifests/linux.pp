@@ -38,6 +38,6 @@ class profile::linux {
     ad_domain        => 'stellarcreative.lab',
     ad_join_username => 'systems',
     ad_join_password => '#thx1138',
-    ad_join_ou       => 'ou=Computers,dc=stellarcreative,dc=lab'
+    ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
   } 
 }
