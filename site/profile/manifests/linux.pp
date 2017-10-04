@@ -40,4 +40,30 @@ class profile::linux {
     ad_join_password => '#thx1138',
     ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
   } 
+
+  # sssd class
+  class {'::sssd':
+  config => {
+    'sssd' => {
+      'domains'             => 'stellarcreative.lab',
+      'config_file_version' => 2,
+      'services'            => ['nss', 'pam'],
+    },
+    'domain/ad.example.com' => {
+      'ad_domain'                      => 'stellarcreative.lab',
+      'ad_server'                      => ['ads1.stellarcreative.lab'],
+      'krb5_realm'                     => 'STELLARCREATIVE.LAB',
+      'realmd_tags'                    => 'joined-with-samba',
+      'cache_credentials'              => true,
+      'id_provider'                    => 'ad',
+      'krb5_store_password_if_offline' => true,
+      'default_shell'                  => '/bin/bash',
+      'ldap_id_mapping'                => false,
+      'use_fully_qualified_names'      => false,
+      'fallback_homedir'               => '/net/home/%u',
+      'access_provider'                => 'simple',
+      'simple_allow_groups'            => ['domain admins', 'users', 'systems'],
+      }
+    }
+  }
 }
