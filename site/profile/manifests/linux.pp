@@ -33,4 +33,11 @@ class profile::linux {
     priority =>   10,
     source   =>   'puppet:///files/sudo/systems.conf',
   }
+
+  class {'::adcli':
+    ad_domain        => 'ads1.stellarcreative.lab',
+    ad_join_username => 'systems',
+    ad_join_password => '#thx1138',
+    ad_join_ou       => 'ou=Computers,dc=stellarcreative,dc=lab'
+  } 
 }
