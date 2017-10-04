@@ -34,20 +34,32 @@ class profile::linux {
     source   =>   'puppet:///files/sudo/systems.conf',
   }
 
-  #class {'::adcli':
-  #  ad_domain        => 'stellarcreative.lab',
-  #  ad_join_username => 'systems',
-  #  ad_join_password => '#thx1138',
-  #  ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
-  #} 
-
-  # domain join and sssd class
-  class { 'domain_join':
-  domain_fqdn               => 'stellarcreative.lab',
-  domain_shortname          => 'stellarcreative',
-  ad_dns                    => ['172.16.10.2'],
-  register_account          => 'systems',
-  register_password         => '#thx1138',
-  additional_search_domains => ['stellarcreative.lab'],
+  # mod 'walkamongus-sssd', '2.0.1'
+  class { '::realmd':
+  domain               => 'stellarcreative.lab',
+  domain_join_user     => 'systems',
+  domain_join_password => '#thx1138',
+  krb_ticket_join    => true,
+  krb_keytab         => '/tmp/keytab',
+  manage_sssd_config => true,
+  sssd_config        => {
+    'sssd' => {
+      'domains'             => $::domain,
+      'config_file_version' => '2',
+      'services'            => 'nss,pam',
+    },
+    "domain/${::domain}" => {
+      'ad_domain'                      => $::domain,
+      'krb5_realm'                     => upcase($::domain),
+      'realmd_tags'                    => 'manages-system joined-with-adcli',
+      'cache_credentials'              => 'True',
+      'id_provider'                    => 'ad',
+      'access_provider'                => 'ad',
+      'krb5_store_password_if_offline' => 'True',
+      'default_shell'                  => '/bin/bash',
+      'ldap_id_mapping'                => 'True',
+      'fallback_homedir'               => '/net/home/%u',
+      },
+    },
   }
 }
