@@ -35,7 +35,7 @@ class profile::linux {
   }
 
   class {'::adcli':
-    ad_domain        => 'ads1.stellarcreative.lab',
+    ad_domain        => 'stellarcreative.lab',
     ad_join_username => 'systems',
     ad_join_password => '#thx1138',
     ad_join_ou       => 'ou=Computers,dc=stellarcreative,dc=lab'
