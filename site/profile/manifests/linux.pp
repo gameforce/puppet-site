@@ -49,8 +49,8 @@ class profile::linux {
       'config_file_version' => 2,
       'services'            => ['nss', 'pam'],
     },
-    'domain/ad.example.com' => {
-      'ad_domain'                      => 'DOMAIN/stellarcreative.lab',
+    'domain/stellarcreative.lab' => {
+      'ad_domain'                      => 'stellarcreative.lab',
       'ad_server'                      => ['ads1.stellarcreative.lab'],
       'krb5_realm'                     => 'STELLARCREATIVE.LAB',
       'realmd_tags'                    => 'joined-with-samba',
