@@ -35,6 +35,7 @@ class profile::linux {
   }
 
   # mod 'walkamongus-sssd', '2.0.1'
+  include ::realmd
   class { '::realmd':
   domain               => 'stellarcreative.lab',
   domain_join_user     => 'systems',
