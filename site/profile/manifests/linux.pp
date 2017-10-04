@@ -34,36 +34,20 @@ class profile::linux {
     source   =>   'puppet:///files/sudo/systems.conf',
   }
 
-  class {'::adcli':
-    ad_domain        => 'stellarcreative.lab',
-    ad_join_username => 'systems',
-    ad_join_password => '#thx1138',
-    ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
-  } 
+  #class {'::adcli':
+  #  ad_domain        => 'stellarcreative.lab',
+  #  ad_join_username => 'systems',
+  #  ad_join_password => '#thx1138',
+  #  ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
+  #} 
 
-  # sssd class
-  class {'::sssd':
-  config => {
-    'sssd' => {
-      'domains'             => 'stellarcreative.lab',
-      'config_file_version' => 2,
-      'services'            => ['nss', 'pam'],
-    },
-    'domain/stellarcreative.lab' => {
-      'ad_domain'                      => 'stellarcreative.lab',
-      'ad_server'                      => ['ads1.stellarcreative.lab'],
-      'krb5_realm'                     => 'STELLARCREATIVE.LAB',
-      'realmd_tags'                    => 'joined-with-samba',
-      'cache_credentials'              => true,
-      'id_provider'                    => 'ad',
-      'krb5_store_password_if_offline' => true,
-      'default_shell'                  => '/bin/bash',
-      'ldap_id_mapping'                => false,
-      'use_fully_qualified_names'      => false,
-      'fallback_homedir'               => '/net/home/%u',
-      'access_provider'                => 'simple',
-      'simple_allow_groups'            => ['domain admins', 'users', 'systems'],
-      }
-    }
+  # domain join and sssd class
+  class { 'domain_join':
+  domain_fqdn               => 'stellarcreative.lab',
+  domain_shortname          => 'stellarcreative',
+  ad_dns                    => ['172.16.10.2'],
+  register_account          => 'systems',
+  register_password         => '#thx1138',
+  additional_search_domains => ['stellarcreative.lab'],
   }
 }
