@@ -43,7 +43,7 @@ class profile::linux {
   # mod 'walkamongus-sssd', '2.0.1'
   class { '::realmd':
   domain               => 'stellarcreative.lab',
-  domain_join_user     => 'systems',
+  #  domain_join_user     => 'systems',
   krb_ticket_join    => false,
 #  krb_keytab         => '/etc/keytab',
   manage_sssd_config => true,
