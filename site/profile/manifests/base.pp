@@ -1,5 +1,6 @@
-class profile::linux {
-  include profile::mounts
+class profile::base {
+  
+  # includes
   include ::openvmtools
 
   # setup environment
@@ -17,8 +18,7 @@ class profile::linux {
     servers => [ 'clock.stellarcreative.lab' ],
   }
 
-  # Disable ipv6 via sysctl - this needs dracut -f if it breaks rpcbind
-  # TODO: move disabling ipv6 to kickstart
+  # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
   sysctl { 'net.ipv6.conf.all.disable_ipv6':
     value => '1' }
 
@@ -33,12 +33,6 @@ class profile::linux {
     priority =>   10,
     source   =>   'puppet:///files/sudo/systems.conf',
   }
-  #  class {'::adcli':
-  #ad_domain        => 'stellarcreative.lab',
-  #ad_join_username => 'systems',
-  #ad_join_password => '#thx1138',
-  #ad_join_ou       => 'cn=computers,dc=stellarcreative,dc=lab'
-  #}
 
   # mod 'walkamongus-sssd', '2.0.1'
   class { '::realmd':
@@ -46,7 +40,7 @@ class profile::linux {
   domain_join_user     => 'domainjoin',
   domain_join_password => '#thx1138',
   krb_ticket_join    => false,
-#  krb_keytab         => '/etc/keytab',
+  #  krb_keytab         => '/etc/keytab',
   manage_sssd_config => true,
   sssd_config        => {
     'sssd' => {
