@@ -7,7 +7,7 @@ class profile::kickstart {
      group  => 'root',
      mode   => '0755',
      source => 'puppet:///files/pxeboot/default',
-     notify =>  Service['tftp'],
+     notify =>  Service['tftp.service'],
    }
 
    # kickstart setup
