@@ -32,7 +32,7 @@ part swap --size 2048 --fstype swap
 reboot
 
 # Package Repositories
-repo --name CentOS-Base --baseurl http://kam1/centos/7/os/x86_64
+repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
 repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
 
 # Package Selection
@@ -85,11 +85,12 @@ export PATH
 rpm -ivh https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
 rpm -ivh http://ftp.osuosl.org/pub/elrepo/elrepo/el7/x86_64/RPMS/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 yum -y update
-yum -y install puppet 
-yum -y install kmod-nvidia-340xx 
+yum -y install puppet
+yum -y install kmod-nvidia-340xx
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-##/opt/puppetlabs/bin/puppet agent --test
+# bootstap puppet
+/opt/puppetlabs/bin/puppet agent --test
 ) 2>&1 | /usr/bin/tee /var/log/install-post-sh.log
 chvt 1
 %end
