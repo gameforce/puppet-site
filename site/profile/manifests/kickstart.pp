@@ -7,7 +7,12 @@ class profile::kickstart {
      group  => 'root',
      mode   => '0755',
      source => 'puppet:///files/pxeboot/default',
+<<<<<<< HEAD
      notify =>  Service['tftp.service'],
+=======
+     # notify =>  Service['tftp'],
+     # Server Error: Invalid relationship: File[/var/lib/tftpboot/pxelinux.cfg/default] { notify => Service[tftp.service] }, because Service[tftp.service] doesn't seem to be in the catalog
+>>>>>>> b8e5b579f37e6312afd2dd8246567a13711a2b7c
    }
 
    # kickstart setup
