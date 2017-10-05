@@ -1,4 +1,13 @@
 class profile::repo {
+  # kickstart setup
+  file { '/var/www/html/vhosts/repo/ks/centos-desktop.ks'
+    ensure => 'present'
+    owner  => 'root'
+    group  => 'root',
+    mode   => '0755',
+    source => 'puppet:///files/kickstart/centos-desktop.ks',
+    notify =>  Service['httpd'],
+  }
 
   class { 'apache':
   default_vhost => false,
