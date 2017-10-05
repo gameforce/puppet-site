@@ -20,4 +20,16 @@ class profile::accounts {
     comment          => 'systems',
     groups           => [ 'users','puppet' ]
   }
+
+  # clone the dotfiles repo
+  vcsrepo { '/home/systems/.dotfiles':
+    ensure => 'latest',
+    provider => 'git',
+    owner => 'systems',
+    group => 'users',
+    source => 'git@git:systems/dotfiles.git',
+    revision => 'master',
+  }
+
+
 }
