@@ -37,3 +37,4 @@ class profile::kickstart {
      source => 'puppet:///files/kickstart/centos-virtualbox.ks',
      notify =>  Service['httpd'],
    }
+}
