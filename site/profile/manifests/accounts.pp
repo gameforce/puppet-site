@@ -47,5 +47,29 @@ class profile::accounts {
     revision => 'master',
   }
 
+# Setup symlinks to dotfiles
+  file { '/home/systems/.bashrc':
+    ensure => 'symlink',
+    target => '/home/systems/.dotfiles/bashrc',
+  }
 
+  file { '/home/systems/.vimrc':
+    ensure => 'symlink',
+    target => '/home/systems/.dotfiles/vimrc',
+  }
+
+  file { '/home/systems/.vim':
+    ensure => 'symlink',
+    target => '/home/systems/.dotfiles/vim',
+  }
+
+  file { '/home/systems/.gitconfig':
+    ensure => 'symlink',
+    target => '/home/systems/.dotfiles/gitconfig',
+  }
+
+  file { '/home/systems/.screenrc':
+    ensure => 'symlink',
+    target => '/home/systems/.dotfiles/screenrc',
+  }
 }
