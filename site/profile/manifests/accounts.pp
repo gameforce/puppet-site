@@ -20,3 +20,4 @@ class profile::accounts {
     comment          => 'systems',
     groups           => [ 'users','puppet' ]
   }
+}
