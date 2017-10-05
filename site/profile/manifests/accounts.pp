@@ -25,7 +25,7 @@ class profile::accounts {
     user             =>  "root",
     ensure           =>  present, 
     type             =>  "ssh-rsa", 
-    key              =>  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDqageI88+KLEhXje9/37k+VwO4jfNTd4ZRbnvucLdO8WRYVmGe5sV1X8hf76Ur9KOyQfSwFq6RUzhXDKcC2y0t2I/YbLFnHKIMtZH9MfRC6cfAhJHgQx6PP6SXdbExvrxTcc4enzA3oYE5+jQcM2hEsDGGT8Zf2BulYIYY2YGfihVq5tHvD1fg5A3nVWVNFxwVq7dcVF5M5UGfNqXFB+bbUtyRtZwyXFayW1Ea61K4V9lu6PiUl64Melb2T6kfH+6Qu9411YiV0IM6oDgdZB0v8ekFAA95FLJ956G2Zu+67LUq4xxfNJhT0BlaiPdUkYfD6SI6+ics/3pgmQABwwS5", 
+    key              =>  "AAAAB3NzaC1yc2EAAAADAQABAAABAQDqageI88+KLEhXje9/37k+VwO4jfNTd4ZRbnvucLdO8WRYVmGe5sV1X8hf76Ur9KOyQfSwFq6RUzhXDKcC2y0t2I/YbLFnHKIMtZH9MfRC6cfAhJHgQx6PP6SXdbExvrxTcc4enzA3oYE5+jQcM2hEsDGGT8Zf2BulYIYY2YGfihVq5tHvD1fg5A3nVWVNFxwVq7dcVF5M5UGfNqXFB+bbUtyRtZwyXFayW1Ea61K4V9lu6PiUl64Melb2T6kfH+6Qu9411YiV0IM6oDgdZB0v8ekFAA95FLJ956G2Zu+67LUq4xxfNJhT0BlaiPdUkYfD6SI6+ics/3pgmQABwwS5", 
     name             =>  "root-ssh-key",
   }
 
@@ -33,7 +33,7 @@ class profile::accounts {
     user             =>  "systems",
     ensure           =>  present, 
     type             =>  "ssh-rsa",
-    key              =>  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYGq9HK49vF8b9fzygkibjV8VDYBsGfq1y1IwueQGee3oAKMMQ/jNCvTAq3GWosXCjz6hXfFrUyJFnL3boHBAGJqOJ1u/o0yierrxX/GJT2RGCoVXQjT/wiDVA9D3RGPisf4A8ThwL7I5DPYQSNqusY+7AGElfkdYKP5q7jqNwJO+DmfeatzKQfGS99dF7JhLf5lnon43GG5jCEjceU22VRVu3ZuRmBLgS+i/xrLQ9UC4b97VZLfYjsHW4b0wU3UxMkrH1muTOFrfFKEoaJqnf08f+eMwbz8GIUzHZHED8Nb8OQHmMvAnT40QCnOphE80DAUOk2Fam6ALVEkbFGy6/",
+    key              =>  "AAAAB3NzaC1yc2EAAAADAQABAAABAQCYGq9HK49vF8b9fzygkibjV8VDYBsGfq1y1IwueQGee3oAKMMQ/jNCvTAq3GWosXCjz6hXfFrUyJFnL3boHBAGJqOJ1u/o0yierrxX/GJT2RGCoVXQjT/wiDVA9D3RGPisf4A8ThwL7I5DPYQSNqusY+7AGElfkdYKP5q7jqNwJO+DmfeatzKQfGS99dF7JhLf5lnon43GG5jCEjceU22VRVu3ZuRmBLgS+i/xrLQ9UC4b97VZLfYjsHW4b0wU3UxMkrH1muTOFrfFKEoaJqnf08f+eMwbz8GIUzHZHED8Nb8OQHmMvAnT40QCnOphE80DAUOk2Fam6ALVEkbFGy6/",
     name             =>  "systems-ssh-key",
   } 
 
