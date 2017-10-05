@@ -7,7 +7,6 @@ class profile::repo {
     mode   => '0755',
     source => 'puppet:///files/kickstart/centos-desktop.ks',
     notify =>  Service['httpd'],
-
   }
 
   file { '/var/www/html/vhosts/repo/ks/centos-server.ks':
