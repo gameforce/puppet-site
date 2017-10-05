@@ -28,7 +28,7 @@ class profile::puppet {
   }
 
   class { '::r10k::webhook':
-    user    => 'root',
-    group   => 'root',
+    user    => 'puppet',
+    group   => 'puppet',
   }
 }
