@@ -1,7 +1,7 @@
 class profile::repo {
   # kickstart setup
-  file { '/var/www/html/vhosts/repo/ks/centos-desktop.ks'
-    ensure =>  'present',
+  file { '/var/www/html/vhosts/repo/ks/centos-desktop.ks':
+    ensure => 'present',
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
