@@ -6,7 +6,22 @@ class profile::repo {
     group  => 'root',
     mode   => '0755',
     source => 'puppet:///files/kickstart/centos-desktop.ks',
-    notify =>  Service['httpd'],
+  }
+
+  file { '/var/www/html/vhosts/repo/ks/centos-server.ks':
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    source => 'puppet:///files/kickstart/centos-server.ks',
+  }
+
+  file { '/var/www/html/vhosts/repo/ks/centos-virtualbox.ks':
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    source => 'puppet:///files/kickstart/centos-virtualbox.ks',
   }
 
   class { 'apache':
@@ -26,4 +41,6 @@ class profile::repo {
   port    => '80',
   docroot => '/var/www/html/vhosts/repo',
   }
+  # restart httpd
+  notify =>  Service['httpd'],
 }
