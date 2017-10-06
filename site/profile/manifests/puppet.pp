@@ -1,7 +1,9 @@
-class puppet {
-  # mod 'puppetlabs-puppetdb', '6.0.1'
+class profile::puppet {
+  
   # Configure puppetdb and its underlying database
-  class { 'puppetdb': }
+  class { 'puppetdb': 
+    listen_address =>  '0.0.0.0',
+  }
 
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config': }
@@ -19,17 +21,14 @@ class puppet {
   }
 
   class { '::r10k::webhook::config':
-    protected        => false,
-    use_mcollective => false,
+    default_branch   => 'production',
+    use_mcollective  => false,
     public_key_path  => "/etc/puppetlabs/puppet/ssl/ca/signed/${facts['fqdn']}.pem",
     private_key_path => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['fqdn']}.pem",
-    notify           => Service['webhook'],
   }
 
   class { '::r10k::webhook':
     user    => 'puppet',
     group   => 'puppet',
-    require => Class['::r10k::webhook::config'],
   }
 }
-

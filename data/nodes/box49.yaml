@@ -1,0 +1,5 @@
+# machine for testing puppet bits
+---
+  classes:
+    - profile::accounts
+    - profile::windows

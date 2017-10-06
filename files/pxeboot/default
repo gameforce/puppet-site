@@ -1,0 +1,27 @@
+# /var/lib/tftpboot/pxelinux.cfg/default
+
+DEFAULT menu.c32
+PROMPT 0
+TIMEOUT 300
+ONTIMEOUT localdisk
+MENU TITLE PXE Network Boot
+
+LABEL localdisk
+    MENU LABEL ^Local Hard Drive
+    MENU DEFAULT
+    LOCALBOOT 0
+
+LABEL install_desktop
+    MENU LABEL ^CentOS 7.3 (64-bit) Desktop
+    KERNEL centos/x86_64/vmlinuz
+    APPEND ks=http://repo/ks/centos-desktop.ks initrd=centos/x86_64/initrd.img ipv6.disable=1 net.ifnames=0 ramdisk_size=100000
+
+LABEL install_server
+    MENU LABEL ^CentOS 7.3 (64-bit) Server
+    KERNEL centos/x86_64/vmlinuz
+    APPEND ks=http://repo/ks/centos-server.ks initrd=centos/x86_64/initrd.img ipv6.disable=1 net.ifnames=0 ramdisk_size=100000
+
+LABEL install_vm
+    MENU LABEL ^CentOS 7.3 (64-bit) VirtualBox
+    KERNEL centos/x86_64/vmlinuz
+    APPEND ks=http://repo/ks/centos-virtualbox.ks initrd=centos/x86_64/initrd.img ipv6.disable=1 inet.ifnames=0 ramdisk_size=100000
