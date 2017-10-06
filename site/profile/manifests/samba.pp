@@ -15,9 +15,7 @@ class profile::samba {
     guest_account        => "none",
     browsable            => false,
     create_mask          => 0644,
-    force_create_mask    => 0644,
     directory_mask       => 0755,
-    force_directory_mask => 0755,
     force_group          => 'domain users',
   }
 }
