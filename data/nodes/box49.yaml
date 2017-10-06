@@ -2,3 +2,5 @@
 ---
   classes:
     - profile::accounts
+    - profile::windows
+    - profile::samba
