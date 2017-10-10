@@ -35,7 +35,8 @@ class profile::accounts {
     provider => 'git',
     owner => 'systems',
     group => 'users',
-    user  =>  'root',
+    user  =>  'systems',
+    require => File['/home/systems/.ssh/id_rsa'],
     source => 'git@git.stellarcreative.lab:systems/dotfiles.git',
     revision => 'master',
   }
