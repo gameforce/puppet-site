@@ -13,11 +13,11 @@ class profile::puppet {
     remote => 'git@git:systems/puppet.git',
   }
 
-  sshkey { "kam1.stellarcreative.lab":
+  sshkey { "r10k@stellar":
     ensure   => present,
     type     => "ssh-rsa",
     target   => "/root/.ssh/known_hosts",
-    key      => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDqageI88+KLEhXje9/37k+VwO4jfNTd4ZRbnvucLdO8WRYVmGe5sV1X8hf76Ur9KOyQfSwFq6RUzhXDKcC2y0t2I/YbLFnHKIMtZH9MfRC6cfAhJHgQx6PP6SXdbExvrxTcc4enzA3oYE5+jQcM2hEsDGGT8Zf2BulYIYY2YGfihVq5tHvD1fg5A3nVWVNFxwVq7dcVF5M5UGfNqXFB+bbUtyRtZwyXFayW1Ea61K4V9lu6PiUl64Melb2T6kfH+6Qu9411YiV0IM6oDgdZB0v8ekFAA95FLJ956G2Zu+67LUq4xxfNJhT0BlaiPdUkYfD6SI6+ics/3pgmQABwwS5 r10k@kam1"
+    key      => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6WN9RbxpLn9oa3IArG6MVT4F7BySNyjKp10itqC38qqNkeEYy8oAHjHh56ErnmrONZ1OomKALaRblJypRo8jBqcULsn3B4R0NW37vMLCyCulk/YasyMiDtU+yE74gkIbTUkbV2Q8t2PHgq69aqKVs2cgXC3znvd93yjqSJEgUjQjzWDiHifs/BTWEFWFSQ1VpQoaKlRueN0048pXC3u6QDldmo82bJunW6FSkq7fkim+ADSOpT/ptxO0AkEetgflvB1cSh1Ar+eyOU0ljljBLp0D4ltjL2UU1HnwXn7o1CRW0JEyz/51PFK6OnwcgocGzmay3b5qd6Y6oPHznqCUp r10k@stellar"
   }
 
   class { '::r10k::webhook::config':

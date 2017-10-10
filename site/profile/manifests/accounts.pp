@@ -21,21 +21,13 @@ class profile::accounts {
     groups           => [ 'users','puppet' ]
   }
 
-  ssh_authorized_key { 'root-ssh-key': 
+  ssh_authorized_key { 'r10k@stellar': 
     user             =>  'root',
     ensure           =>  present, 
     type             =>  'ssh-rsa', 
-    key              =>  'AAAAB3NzaC1yc2EAAAADAQABAAABAQDqageI88+KLEhXje9/37k+VwO4jfNTd4ZRbnvucLdO8WRYVmGe5sV1X8hf76Ur9KOyQfSwFq6RUzhXDKcC2y0t2I/YbLFnHKIMtZH9MfRC6cfAhJHgQx6PP6SXdbExvrxTcc4enzA3oYE5+jQcM2hEsDGGT8Zf2BulYIYY2YGfihVq5tHvD1fg5A3nVWVNFxwVq7dcVF5M5UGfNqXFB+bbUtyRtZwyXFayW1Ea61K4V9lu6PiUl64Melb2T6kfH+6Qu9411YiV0IM6oDgdZB0v8ekFAA95FLJ956G2Zu+67LUq4xxfNJhT0BlaiPdUkYfD6SI6+ics/3pgmQABwwS5', 
-    name             =>  'root-ssh-key',
+    key              =>  'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6WN9RbxpLn9oa3IArG6MVT4F7BySNyjKp10itqC38qqNkeEYy8oAHjHh56ErnmrONZ1OomKALaRblJypRo8jBqcULsn3B4R0NW37vMLCyCulk/YasyMiDtU+yE74gkIbTUkbV2Q8t2PHgq69aqKVs2cgXC3znvd93yjqSJEgUjQjzWDiHifs/BTWEFWFSQ1VpQoaKlRueN0048pXC3u6QDldmo82bJunW6FSkq7fkim+ADSOpT/ptxO0AkEetgflvB1cSh1Ar+eyOU0ljljBLp0D4ltjL2UU1HnwXn7o1CRW0JEyz/51PFK6OnwcgocGzmay3b5qd6Y6oPHznqCUp r10k@stellar', 
+    name             =>  'r10k@stellar',
   }
-
-   ssh_authorized_key { "systems-ssh-key":
-    user             =>  "systems",
-    ensure           =>  present, 
-    type             =>  "ssh-rsa",
-    key              =>  "AAAAB3NzaC1yc2EAAAADAQABAAABAQCYGq9HK49vF8b9fzygkibjV8VDYBsGfq1y1IwueQGee3oAKMMQ/jNCvTAq3GWosXCjz6hXfFrUyJFnL3boHBAGJqOJ1u/o0yierrxX/GJT2RGCoVXQjT/wiDVA9D3RGPisf4A8ThwL7I5DPYQSNqusY+7AGElfkdYKP5q7jqNwJO+DmfeatzKQfGS99dF7JhLf5lnon43GG5jCEjceU22VRVu3ZuRmBLgS+i/xrLQ9UC4b97VZLfYjsHW4b0wU3UxMkrH1muTOFrfFKEoaJqnf08f+eMwbz8GIUzHZHED8Nb8OQHmMvAnT40QCnOphE80DAUOk2Fam6ALVEkbFGy6/",
-    name             =>  "systems-ssh-key",
-  } 
 
   # clone the dotfiles repo
   vcsrepo { '/home/systems/.dotfiles':
