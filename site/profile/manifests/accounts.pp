@@ -21,6 +21,14 @@ class profile::accounts {
     groups           => [ 'users','puppet' ]
   }
 
+  file { '/home/systems/.ssh/id_rsa':
+    ensure          =>  'present',
+    owner           =>  'systems',
+    group           =>  'users',
+    mode            =>  '0600',
+    source          =>  'puppet:///files/ssh/id_rsa',
+  }
+
   ssh_authorized_key { 'r10k@stellar': 
     user             =>  'root',
     ensure           =>  present, 
@@ -36,7 +44,6 @@ class profile::accounts {
     owner => 'systems',
     group => 'users',
     user  =>  'systems',
-    require => File['/home/systems/.ssh/id_rsa'],
     source => 'git@git.stellarcreative.lab:systems/dotfiles.git',
     revision => 'master',
   }
