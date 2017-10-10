@@ -35,7 +35,8 @@ class profile::accounts {
     provider => 'git',
     owner => 'systems',
     group => 'users',
-    source => 'giti:Jp8xae2sXBv6ZsYg6CJi@git.stellarcreative.lab:systems/dotfiles.git',
+    user  =>  'root',
+    source => 'giti@git.stellarcreative.lab:systems/dotfiles.git',
     revision => 'master',
   }
 
