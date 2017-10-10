@@ -43,7 +43,7 @@ class profile::accounts {
     provider => 'git',
     owner => 'systems',
     group => 'users',
-    user  =>  'systems',
+    user  =>  'root',
     source => 'git@git:systems/dotfiles.git',
     revision => 'master',
   }
