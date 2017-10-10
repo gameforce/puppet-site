@@ -21,8 +21,8 @@ class profile::accounts {
     groups           => [ 'users','puppet' ]
   }
 
-  ssh_authorized_key { r'root-ssh-key': 
-    user             =>  r'root',
+  ssh_authorized_key { 'root-ssh-key': 
+    user             =>  'root',
     ensure           =>  present, 
     type             =>  'ssh-rsa', 
     key              =>  'AAAAB3NzaC1yc2EAAAADAQABAAABAQDqageI88+KLEhXje9/37k+VwO4jfNTd4ZRbnvucLdO8WRYVmGe5sV1X8hf76Ur9KOyQfSwFq6RUzhXDKcC2y0t2I/YbLFnHKIMtZH9MfRC6cfAhJHgQx6PP6SXdbExvrxTcc4enzA3oYE5+jQcM2hEsDGGT8Zf2BulYIYY2YGfihVq5tHvD1fg5A3nVWVNFxwVq7dcVF5M5UGfNqXFB+bbUtyRtZwyXFayW1Ea61K4V9lu6PiUl64Melb2T6kfH+6Qu9411YiV0IM6oDgdZB0v8ekFAA95FLJ956G2Zu+67LUq4xxfNJhT0BlaiPdUkYfD6SI6+ics/3pgmQABwwS5', 
