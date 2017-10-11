@@ -33,7 +33,7 @@ reboot
 
 # Package Repositories
 repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
-repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
+repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64/
 
 # Package Selection
 %packages --nobase --ignoremissing
