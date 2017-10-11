@@ -33,7 +33,7 @@ reboot
 
 # Package Repositories
 repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
-repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
+repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64/
 
 # Package Selection
 %packages --nobase --ignoremissing
@@ -90,7 +90,12 @@ yum -y install kmod-nvidia-340xx
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 # bootstap puppet
+echo "Running puppet for the first time..."
+sleep 5
 /opt/puppetlabs/bin/puppet agent --test
+/opt/puppetlabs/bin/puppet agent --test
+#Tell us we have reached the end
+echo "We have reached the end of the post-install script"
 ) 2>&1 | /usr/bin/tee /var/log/install-post-sh.log
 chvt 1
 %end
