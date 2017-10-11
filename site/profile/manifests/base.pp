@@ -19,7 +19,7 @@ class profile::base {
   }
 
   # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
-  if "test -e /proc/sys/net/ipv6/conf/all/disable_ipv6" {
+  if exec{"test -e /proc/sys/net/ipv6/conf/all/disable_ipv6"} {
     sysctl { 'net.ipv6.conf.all.disable_ipv6': value  => '1' }
   }
   else {
