@@ -19,11 +19,8 @@ class profile::base {
   }
 
   # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
-  if exec{"test -e /proc/sys/net/ipv6/conf/all/disable_ipv6"} {
-    sysctl { 'net.ipv6.conf.all.disable_ipv6': value  => '1' }
-  }
-  else {
-    warning('ipv6 was disabled from kickstart on this host.')
+  sysctl::value { 'net.ipv6.conf.all.disable_ipv6': 
+      value  => '1' 
   }
 
   # mod 'puppetlabs-firewall', '1.9.0'
