@@ -17,7 +17,7 @@ class profile::base {
     group  => '0',
     mode   => '0600',
     source => 'puppet:///files/ssh/sshd_config',
-    notify =>   Service['sshd'],
+    notify =>   Service['ssh'],
   } 
 
 
