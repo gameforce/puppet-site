@@ -17,9 +17,8 @@ class profile::base {
     group  => '0',
     mode   => '0600',
     source => 'puppet:///files/ssh/sshd_config',
-    notify =>   Service['sshd.service'],
   } 
-
+    notify => Service['sshd'],
 
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
@@ -50,10 +49,10 @@ class profile::base {
   domain               => 'stellarcreative.lab',
   domain_join_user     => 'domainjoin',
   domain_join_password => '#thx1138',
-  krb_ticket_join    => false,
-  #  krb_keytab         => '/etc/keytab',
-  manage_sssd_config => true,
-  sssd_config        => {
+  krb_ticket_join      => false,
+  #  krb_keytab        => '/etc/keytab',
+  manage_sssd_config   => true,
+  sssd_config          => {
     'sssd' => {
       'domains'             => $::domain,
       'config_file_version' => '2',
