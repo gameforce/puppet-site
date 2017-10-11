@@ -11,6 +11,6 @@ class profile::ssh {
 
   service { sshd:
     ensure    =>  running,
-    subscribe =>  File["/etc/sshd_config"],
+    subscribe =>  File["/etc/ssh/sshd_config"],
   }
 }
