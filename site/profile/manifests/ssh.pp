@@ -1,6 +1,6 @@
 class profile::ssh {
   
-  # disable strict host checking in ssh
+  # implement our own sshd_config
   file { '/etc/ssh/sshd_config':
     ensure    => 'present',
     owner     => 'root',
@@ -8,6 +8,15 @@ class profile::ssh {
     mode      => '0600',
     source    => 'puppet:///files/ssh/sshd_config',
   }
+  
+  # implement our version of the ssh client options
+  file { '/etc/ssh/sshd_config':
+    ensure    => 'present',
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0644',
+    source    => 'puppet:///files/ssh/ssh_config',
+  } 
 
   service { sshd:
     ensure    =>  running,
