@@ -25,7 +25,7 @@ class profile::accounts {
     ensure          =>  'present',
     owner           =>  'systems',
     group           =>  'users',
-    mode            =>  '0644',
+    mode            =>  '0600',
     source          =>  'puppet:///files/ssh/id_rsa',
   }
 
