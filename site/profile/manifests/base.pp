@@ -14,10 +14,10 @@ class profile::base {
   file { '/etc/ssh/sshd_config':
     ensure => 'present',
     owner  => 'root',
-    group  => '0',
+    group  => 'root',
     mode   => '0600',
     source => 'puppet:///files/ssh/sshd_config',
-    notify => Service['sshd'],
+    notify => Service["sshd"],
   }
 
   # mod 'saz-motd', '2.4.0'
