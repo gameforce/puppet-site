@@ -9,6 +9,16 @@ class profile::base {
     content => "export PATH=${stellarpath}",
     mode    => '0644'
   }
+  
+  # disable strict host checking in ssh
+  file { '/etc/ssh/sshd_config':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => '0',
+    mode    => '0600',
+    source  => 'puppet:///files/ssh/sshd_config',
+  } 
+
 
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
