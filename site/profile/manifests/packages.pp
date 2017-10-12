@@ -10,4 +10,5 @@ class profile::packages {
   package { 'wget': ensure => 'installed', }
   package { 'htop': ensure => 'installed', }
   package { 'tcsh': ensure => 'installed', }
+  package { 'Thunar': ensure => 'installed', }
 }
