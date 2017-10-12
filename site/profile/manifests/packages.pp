@@ -9,4 +9,5 @@ class profile::packages {
   package { 'vim-enhanced': ensure => 'installed', }
   package { 'wget': ensure => 'installed', }
   package { 'htop': ensure => 'installed', }
+  package { 'tcsh': ensure => 'installed', }
 }
