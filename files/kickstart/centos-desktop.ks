@@ -39,12 +39,10 @@ repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64/
 %packages --nobase --ignoremissing
 @core
 -biosdevname
-@development-and-creative-workstation
 @fonts
 @gnome-desktop
 @graphical-administration-tools
 @input-methods
-@multimedia
 @x-window-system
 @x11
 epel-release
@@ -86,7 +84,7 @@ rpm -ivh https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0
 rpm -ivh http://ftp.osuosl.org/pub/elrepo/elrepo/el7/x86_64/RPMS/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 yum -y update
 yum -y install puppet
-yum -y install kmod-nvidia-340xx
+yum -y install kmod-nvidia
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 # bootstap puppet
