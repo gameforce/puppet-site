@@ -11,4 +11,5 @@ class profile::packages {
   package { 'htop': ensure => 'installed', }
   package { 'tcsh': ensure => 'installed', }
   package { 'Thunar': ensure => 'installed', }
+  package { 'bash-completion': ensure => 'installed', }
 }
