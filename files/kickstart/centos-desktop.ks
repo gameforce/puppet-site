@@ -8,6 +8,7 @@ authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/
 firewall --disabled
 selinux --disabled
+firstboot --disabled
 %addon com_redhat_kdump --disable
 %end
 bootloader --location=mbr --driveorder=sda --append="crashkernel=auth rhgb"
