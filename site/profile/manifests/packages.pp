@@ -12,4 +12,6 @@ class profile::packages {
   package { 'tcsh': ensure => 'installed', }
   package { 'Thunar': ensure => 'installed', }
   package { 'bash-completion': ensure => 'installed', }
+  package { 'audiofile': ensure => 'installed', }
+  package { 'audiofile-devel': ensure => 'installed', }
 }
