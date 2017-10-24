@@ -1,5 +1,17 @@
 # packages installed by puppet
 class profile::packages {
+
+  # yum repos that puppet will manage
+  yumrepo { "ius":
+    baseurl => "https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch"
+    descr   => "ius repo"
+    enabled => 1,
+  }
+  package { python36u:
+    ensure => present,
+    require => Yumrepo["ius"],
+  }
+
   package { 'epel-release': ensure => 'installed', }
   package { 'bind-utils': ensure => 'installed', }
   package { 'nfs-utils': ensure => 'installed', }
