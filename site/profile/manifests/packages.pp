@@ -5,6 +5,7 @@ class profile::packages {
   yumrepo { 'ius':
     baseurl => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch',
     descr   => 'ius',
+    gpgcheck => '0',
     enabled => '1',
   }
   package { python36u:
