@@ -4,7 +4,7 @@ class profile::packages {
   # yum repos that puppet will manage
   yumrepo { "ius":
     baseurl => "https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch"
-    descr   => "ius repo"
+    descr   => "ius repo",
     enabled => 1,
   }
   package { python36u:
