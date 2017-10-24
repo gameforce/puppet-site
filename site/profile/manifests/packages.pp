@@ -4,12 +4,12 @@ class profile::packages {
   # yum repos that puppet will manage
   yumrepo { "ius":
     baseurl => "https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch"
-    #descr   => "ius",
+    descr   => "ius",
     enabled => 1,
   }
   package { python36u:
     ensure => present,
-    require => Yumrepo["ius"],
+   # require => Yumrepo["ius"],
   }
 
   package { 'epel-release': ensure => 'installed', }
