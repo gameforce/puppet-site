@@ -15,18 +15,6 @@ class profile::packages {
     require => Yumrepo["ius"],
   }
   
-  # elrepo for nvidia driver
-  yumrepo { 'elrepo':
-    baseurl => 'http://elrepo.org/linux/elrepo/el7/$basearch/',
-    descr   => 'ELRepo.org Community Enterprise Linux Repository - el7',
-    gpgcheck => '0',
-    enabled => '1',
-  }
-  package { kmod-nvidia:
-    ensure => present,
-    require => Yumrepo["elrepo"],
-  }
-
   # common packages
   package { 'epel-release': ensure => 'installed', }
   package { 'bind-utils': ensure => 'installed', }
