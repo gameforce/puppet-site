@@ -36,7 +36,7 @@ repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
 # Package Selection
 %packages --nobase --ignoremissing
 @core
--open-vm-tools
+@platform-vmware --nodefaults
 epel-release
 wget
 sudo
