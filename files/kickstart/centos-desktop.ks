@@ -1,5 +1,5 @@
 install
-url --url http://kam1/centos/7.3/os/x86_64
+url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
