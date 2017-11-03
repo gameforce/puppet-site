@@ -60,6 +60,7 @@ samba
 libXp
 compat-libtiff3
 gamin
+libpng12
 xorg-x11-fonts-100dpi
 xorg-x11-fonts-75dpi
 xorg-x11-fonts-ISO8859-1-100dpi
