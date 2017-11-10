@@ -1,5 +1,5 @@
 # managed by puppet
 
 # per-show maps: Ark
-ark     -fstype=nfs,rw,soft  srv1:/data/job/ark
-sandbox -fstype=nfs,rw,soft  srv1:/data/job/sandbox
+ark     -fstype=nfs,rw,soft  syn:/volume1/ark
+sandbox -fstype=nfs,rw,soft  syn:/volume1/sandbox
