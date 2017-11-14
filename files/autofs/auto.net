@@ -1,7 +1,7 @@
 # managed by puppet
 
 # home directories
-home      -fstype=nfs,rw,soft  syn:/volume1/users
+home      -fstype=nfs,rw,nosuid,soft  syn:/volume1/users
 
 # pipeline
 pipeline  -fstype=nfs,rw,soft  syn:/volume1/pipeline
