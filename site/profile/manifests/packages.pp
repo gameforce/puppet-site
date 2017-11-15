@@ -23,11 +23,5 @@ class profile::packages {
   package { 'zsh': ensure => 'installed', }
   package { 'screen': ensure => 'installed', }
   package { 'vim-enhanced': ensure => 'installed', }
-  package { 'wget': ensure => 'installed', }
   package { 'htop': ensure => 'installed', }
-  package { 'tcsh': ensure => 'installed', }
-  package { 'Thunar': ensure => 'installed', }
-  package { 'bash-completion': ensure => 'installed', }
-  package { 'audiofile': ensure => 'installed', }
-  package { 'audiofile-devel': ensure => 'installed', }
 }

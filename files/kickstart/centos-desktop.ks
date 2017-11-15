@@ -34,7 +34,6 @@ reboot
 
 # Package Repositories
 repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
-repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64/
 
 # Package Selection
 %packages --nobase --ignoremissing
@@ -46,7 +45,6 @@ repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64/
 @input-methods
 @x-window-system
 @x11
-epel-release
 wget
 sudo
 perl
@@ -61,6 +59,11 @@ libXp
 compat-libtiff3
 gamin
 libpng12
+wget
+tcsh
+Thunar
+audiofile
+audiofile-devel
 xorg-x11-fonts-100dpi
 xorg-x11-fonts-75dpi
 xorg-x11-fonts-ISO8859-1-100dpi
