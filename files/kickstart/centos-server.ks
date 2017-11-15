@@ -1,72 +1,192 @@
+#############################################################################
+# Kickstart for CentOS 7
+# ###########################################################################
+# This file is managed by puppet.
+#
 install
-url --url http://repo/centos/7.3/os/x86_64
+text
+network --noipv6 --onboot=yes --bootproto dhcp
+url --url http://repo/centos/7/os/x86_64
+
+###########################
+#Localisation settings
+###########################
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
-network --noipv6 --onboot=yes --bootproto dhcp
 authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/
 firewall --disabled
 selinux --disabled
-%addon com_redhat_kdump --disable
-%end
-bootloader --location=mbr --driveorder=sda --append="crashkernel=auth rhgb"
-
-# Accept license
+firstboot --disabled
 eula --agreed
 
-# Don't use GUI
-text
-skipx
+#Disable kdump
+%addon com_redhat_kdump --disable
+%end
 
-# Disk Partitioning
+############################
+#Repos
+############################
+repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
+#repo --name stellar --baseurl=http://repo/centos/7/stellar/x86_64/
+
+# NO ADDITIONAL REPOS AT THIS TIME
+
+############################
+#HDD Configuration
+############################
+zerombr
 clearpart --all --initlabel
+bootloader --location=mbr --append="rdblacklist=nouveau"
 part /boot --size 500 --fstype ext3
 part / --size 8192 --grow --fstype xfs
 part swap --size 2048 --fstype swap
-# END of Disk Partitioning
 
-# Make sure we reboot into the new system when we are finished
-reboot
-
-# Package Repositories
-repo --name CentOS-Base --baseurl http://repo/centos/7/os/x86_64
-repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
-
-# Package Selection
+#############################
+#Packages to be installed
+#############################
 %packages --nobase --ignoremissing
 @core
 @platform-vmware --nodefaults
 epel-release
+curl
+net-tools
 wget
 sudo
 perl
 nmap
 git
 nfs-utils
+gcc
 autofs
 xfsprogs
 samba
+tcsh
+puppet
+ntp
 %end
+
+##############################################
+# PRE INSTALL SCRIPTS
+##############################################
 
 %pre
+#!/bin/sh
+#
+# Pre-install script; will not cause Anaconda to abort, even if it
+# returns non-zero return code
+#
+
+# Allow user to see this script on a console
+
+exec < /dev/tty3 > /dev/tty3 2>&1
+chvt 3
+
+# Machines of different manufactures can use different types
+# of disk. Select the disk for the OS install.
+
+CANDIDATES="cciss/c0d0 sda vda"
+
+for AUTO in $CANDIDATES ""; do
+  if [ -b "/dev/$AUTO" ]; then
+    break
+  fi
+done
+
+# Allow user to select the disk for install
+
+while true; do
+  read -p "Enter destination disk, or ? for a list [$AUTO]: " M
+
+  if [ "$M" == '?' ]; then
+    echo
+    (cd /sys/block && ls | grep -v '^loop' |
+      grep -v '^ram' | sed -e 'y|!|/|' )
+    echo
+    continue
+  fi
+
+  if [ "$M" == '' ]; then
+    M="$AUTO"
+  fi
+
+  if [ "$M" == '' ]; then
+    continue
+  fi
+
+  if [ ! -b "/dev/$M" ]; then
+    echo "/dev/$M not found" >&2
+    continue
+  fi
+
+  break
+done
+
+echo "clearpart --drives=$M --all" > /tmp/root-disk
+
+# Final confirmation from user
+
+CONFIRM="no"
+while [ "$CONFIRM" != "yes" ]; do
+  echo
+  echo '********************************************************************************'
+  echo '*                              W A R N I N G                                   *'
+  echo '*                                                                              *'
+  echo '*        This process will install a completely new operating system           *'
+  echo '*                                                                              *'
+  echo '*      Do you wish to continue? (Type the entire word "yes" to proceed.)       *'
+  echo '*                                                                              *'
+  echo '********************************************************************************'
+  echo
+  read -p "Proceed with install to $M? " CONFIRM
+done
+
+# Switch back to the kickstart display
+
+clear
+chvt 1
+
 %end
 
-%post --log=/root/install-post.log
-exec < /dev/tty3 > /dev/tty3
-chvt 3
-echo
-echo "################################"
-echo "# Running Post Configuration   #"
-echo "################################"
-(
-PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
-export PATH
+##############################################
+# POST INSTALL SCRIPTS
+##############################################
 
-# install puppet, nux, kmod-nvidia and update
-rpm -ivh https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
-yum -y update
-yum -y install puppet 
-) 2>&1 | /usr/bin/tee /var/log/install-post-sh.log
+%post --interpreter /bin/bash
+
+# Allow user to see this script on a console
+exec < /dev/tty3 > /dev/tty3 2>&1
+chvt 3
+
+# Clean out any old certificates on the puppetca that may exist for this host
+# certname=`hostname`
+# curl "http://puppetca/cgi-bin/cleancert.cgi?${certname}"
+
+# variable to say machine is a server
+mkdir -p /etc/puppetlabs/facter/facts.d
+echo "systype=server" > /etc/puppetlabs/facter/facts.d/systype.txt
+
+# Disable the default external repos
+sed -i "s/enabled=1/enabled=0/g" /etc/yum.repos.d/*.repo
+
+#Configure local repos
+cat >> /etc/yum.repos.d/stellar-centos.repo <<'EOF'
+[stellar-centos]
+name=Stellar CentOS Linux Repo - x86_64
+baseurl=http://repo/centos/7/os/x86_64/
+enabled=1
+gpgcheck=0
+enablegroups=1
+EOF
+
+#Run puppet so the clients configuration is applied before reboot
+echo executing puppet run for $HOSTNAME
+/opt/puppetlabs/bin/puppet agent --test
+
+# Switch back to the kickstart display
+
+clear
 chvt 1
+
 %end
