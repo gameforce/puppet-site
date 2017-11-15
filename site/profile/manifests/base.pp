@@ -59,7 +59,7 @@ class profile::base {
       'krb5_store_password_if_offline' => 'True',
       'default_shell'                  => '/bin/bash',
       'ldap_id_mapping'                => 'True',
-      'fallback_homedir'               => '/net/home/%u',
+      'fallback_homedir'               => '/home/%u',
       },
     },
   }
