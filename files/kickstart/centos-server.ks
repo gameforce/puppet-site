@@ -6,7 +6,8 @@
 install
 text
 network --noipv6 --onboot=yes --bootproto dhcp
-url --url http://repo/centos/7/os/x86_64
+#url --url http://repo/centos/7/os/x86_64
+url --url http://repo/centos/7.4/
 
 ###########################
 #Localisation settings
@@ -28,8 +29,8 @@ eula --agreed
 ############################
 #Repos
 ############################
-repo --name epel --baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
-#repo --name stellar --baseurl=http://repo/centos/7/stellar/x86_64/
+repo --name epel --baseurl=http://repo/epel
+repo --name stellar --baseurl=http://repo/stellar/x86_64
 
 # NO ADDITIONAL REPOS AT THIS TIME
 
@@ -174,7 +175,7 @@ sed -i "s/enabled=1/enabled=0/g" /etc/yum.repos.d/*.repo
 cat >> /etc/yum.repos.d/stellar-centos.repo <<'EOF'
 [stellar-centos]
 name=Stellar CentOS Linux Repo - x86_64
-baseurl=http://repo/centos/7/os/x86_64/
+baseurl=http://repo/centos/7.4
 enabled=1
 gpgcheck=0
 enablegroups=1
