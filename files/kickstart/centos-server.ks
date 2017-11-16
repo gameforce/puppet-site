@@ -37,9 +37,9 @@ repo --name stellar --baseurl=http://repo/stellar/x86_64
 ############################
 #HDD Configuration
 ############################
+bootloader --location=mbr --driveorder=sda --append="rdblacklist=nouveau"
 zerombr
 clearpart --all --initlabel
-bootloader --location=mbr --append="rdblacklist=nouveau"
 part /boot --size 500 --fstype ext3
 part / --size 8192 --grow --fstype xfs
 part swap --size 2048 --fstype swap
