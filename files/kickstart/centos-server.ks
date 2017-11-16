@@ -40,8 +40,8 @@ repo --name stellar --baseurl=http://repo/stellar/x86_64
 bootloader --location=mbr --driveorder=sda --append="rdblacklist=nouveau"
 zerombr
 clearpart --all --initlabel
-part /boot --size 500 --fstype ext3
-part / --size 8192 --grow --fstype xfs
+part /boot --size 500 --fstype ext2
+part / --size 8192 --grow --fstype ext4
 part swap --size 2048 --fstype swap
 
 #############################
