@@ -1,15 +1,15 @@
 class profile::base {
-  
+
   # includes
   include ::openvmtools
 
   # setup environment
-  $stellarpath = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:${PATH}'
+  $stellarpath = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
   file { "/etc/profile.d/stellar.sh":
     content => "export PATH=${stellarpath}",
     mode    => '0644'
   }
-  
+
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
 
@@ -19,8 +19,8 @@ class profile::base {
   }
 
   # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
-  #sysctl::value { 'net.ipv6.conf.all.disable_ipv6': 
-  #    value  => '1' 
+  #sysctl::value { 'net.ipv6.conf.all.disable_ipv6':
+  #    value  => '1'
   #}
 
   # mod 'puppetlabs-firewall', '1.9.0'
