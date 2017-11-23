@@ -9,6 +9,7 @@ class profile::accounts {
   # create our default local user
   user { 'systems':
     ensure           => 'absent',
+  }
 
   file { '/root/.ssh/id_rsa':
     ensure          =>  'present',
