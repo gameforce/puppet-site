@@ -18,6 +18,8 @@ class profile::packages {
       ensure => present,
       require => Yumrepo["ius"],
     }
+    package { 'kmod-wacom': ensure => 'installed', }
+    package { 'xorg-x11-drv-wacom': ensure => 'installed', }
   }
   elsif $facts['systype'] == 'server' {
     notify {"this is a server" :}
