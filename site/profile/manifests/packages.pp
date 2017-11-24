@@ -3,7 +3,7 @@ class profile::packages {
 
   # fact check for systype
   if $facts['systype'] == 'desktop' {
-       notify {"This is a $systype Installing desktop packages" :}
+       #notify {"This is a $systype Installing desktop packages" :}
        package { 'kmod-wacom': ensure => 'installed', }
        package { 'xorg-x11-drv-wacom': ensure => 'installed', }
 
@@ -21,7 +21,7 @@ class profile::packages {
 
   }
   elsif $facts['systype'] == 'server' {
-     notify {"this is a $systype Installing server packages" :}
+     #notify {"this is a $systype Installing server packages" :}
   }
   else {
     # install common packages
