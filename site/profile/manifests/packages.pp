@@ -7,7 +7,7 @@ class profile::packages {
     notice ('This is a desktop $1')
     notify {"This is a $systype" :}
   }
-  elseif $facts['systype'] == 'server' {
+  elsif $facts['systype'] == 'server' {
     notice ('This is not a server #systype $1')
     notify {"this is a serber $1 $systype" :}
   }
