@@ -1,7 +1,10 @@
 # packages installed by puppet
 class profile::packages {
 
-  # yum repos that puppet will manage
+  # fact check for systype
+  if $facts['systype'] == 'desktop'
+        notice("This is a $1")
+  }
 
   # ius repo and package for python3
   yumrepo { 'ius':
@@ -14,7 +17,7 @@ class profile::packages {
     ensure => present,
     require => Yumrepo["ius"],
   }
-  
+
   # common packages
   package { 'epel-release': ensure => 'installed', }
   package { 'bind-utils': ensure => 'installed', }
