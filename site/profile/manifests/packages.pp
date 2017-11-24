@@ -3,7 +3,8 @@ class profile::packages {
 
   # fact check for systype
   if $facts['systype'] == 'desktop'
-        notify {"This is a $1": }
+    #notify {"This is a $1": }
+    notify {"TODO: Add windows bits":}
   }
 
   # ius repo and package for python3
