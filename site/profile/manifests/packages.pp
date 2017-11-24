@@ -4,7 +4,7 @@ class profile::packages {
   # fact check for systype
   #if $facts['systype'] == 'desktop' {
   if $systype == 'desktop' {
-    warning('This is a desktop $1')
+    notice('This is a desktop $1')
   }
   else {
     warning('This is not a desktop $1')
