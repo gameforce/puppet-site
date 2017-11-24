@@ -5,7 +5,7 @@ class profile::packages {
   #if $facts['systype'] == 'desktop' {
   if $facts['systype'] == 'desktop' {
     #notice ('This is a desktop $1')
-    notify {"This is a $systype $1" :}
+    notify {"This is a $systype" :}
   }
   elsif $facts['systype'] == 'server' {
     #notice ('This is not a server $systype $1')
