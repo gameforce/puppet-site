@@ -5,11 +5,11 @@ class profile::packages {
   #if $facts['systype'] == 'desktop' {
   if $facts['systype'] == 'desktop' {
     notice ('This is a desktop $1')
-    notify {"This is a $systype":}
+    notify {"This is a $systype" :}
   }
   elseif $facts['systype'] == 'server' {
     notice ('This is not a server #systype $1')
-    notify {"this is a serber $1 $systype":}
+    notify {"this is a serber $1 $systype" :}
   }
 
   # ius repo and package for python3
