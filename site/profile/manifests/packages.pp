@@ -7,7 +7,6 @@ class profile::packages {
   else {
     notice ('This is not a desktop $1')
     }
-  }
 
   # ius repo and package for python3
   yumrepo { 'ius':
