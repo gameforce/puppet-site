@@ -4,12 +4,12 @@ class profile::packages {
   # fact check for systype
   #if $facts['systype'] == 'desktop' {
   if $facts['systype'] == 'desktop' {
-    notice ('This is a desktop $1')
-    notify {"This is a $systype" :}
+    #notice ('This is a desktop $1')
+    notify {"This is a $systype $1" :}
   }
   elsif $facts['systype'] == 'server' {
-    notice ('This is not a server $systype $1')
-    notify {"this is a server $1 $systype" :}
+    #notice ('This is not a server $systype $1')
+    notify {"this is a server $1" :}
   }
 
   # ius repo and package for python3
