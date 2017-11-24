@@ -3,11 +3,13 @@ class profile::packages {
 
   # fact check for systype
   #if $facts['systype'] == 'desktop' {
-  if $systype == 'desktop' {
-    notice('This is a desktop $1')
+  if $facts['systype'] == 'desktop' {
+    notice ('This is a desktop $1')
+    notify {"This is a $systype":}
   }
-  else {
-    warning('This is not a desktop $1')
+  elseif $facts['systype'] == 'server' {
+    notice ('This is not a server #systype $1')
+    notify {"this is a serber $1 $systype":}
   }
 
   # ius repo and package for python3
