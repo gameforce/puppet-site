@@ -35,6 +35,15 @@ class profile::base {
     source   =>   'puppet:///files/sudo/systems.conf',
   }
 
+  # puppet agent cron job
+  cron { 'puppet-agent':
+    ensure  => 'present',
+    command => '/opt/puppetlabs/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 60',
+    minute  => ['30'],
+    target  => 'root',
+    user    => 'root',
+  }
+
   # mod 'walkamongus-sssd', '2.0.1'
   class { '::realmd':
   domain               => 'stellarcreative.lab',
