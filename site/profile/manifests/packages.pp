@@ -2,24 +2,24 @@
 class profile::packages {
 
   # fact check for systype
-  #if $facts['systype'] == 'desktop' {
   if $facts['systype'] == 'desktop' {
-    #notice ('This is a desktop $1')
-    notify {"This is a $systype" :}
-    notify {"Installing desktop packages" :}
+      notify {"This is a $systype" :}
+      notify {"Installing desktop packages" :}
+      package { 'kmod-wacom': ensure => 'installed', }
+      package { 'xorg-x11-drv-wacom': ensure => 'installed', }
+
     # ius repo and package for python3
     yumrepo { 'ius':
-      baseurl => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch',
-      descr   => 'ius',
+      baseurl  => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch',
+      descr    => 'ius',
       gpgcheck => '0',
-      enabled => '1',
+      enabled  => '1',
     }
     package { python36u:
-      ensure => present,
-      require => Yumrepo["ius"],
+      ensure   => present,
+      require  => Yumrepo["ius"],
     }
-    package { 'kmod-wacom': ensure => 'installed', }
-    package { 'xorg-x11-drv-wacom': ensure => 'installed', }
+
   }
   elsif $facts['systype'] == 'server' {
     notify {"this is a server" :}
