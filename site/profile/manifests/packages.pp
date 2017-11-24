@@ -9,7 +9,7 @@ class profile::packages {
   }
   elsif $facts['systype'] == 'server' {
     notice ('This is not a server #systype $1')
-    notify {"this is a serber $1 $systype" :}
+    notify {"this is a server $1 $systype" :}
   }
 
   # ius repo and package for python3
