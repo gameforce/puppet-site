@@ -6,7 +6,7 @@ class profile::packages {
   if $facts['systype'] == 'desktop' {
     #notice ('This is a desktop $1')
     notify {"This is a $systype" :}
-    notify {"Installing desktop packages :"}
+    notify {"Installing desktop packages" :}
     # ius repo and package for python3
     yumrepo { 'ius':
       baseurl => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch',
