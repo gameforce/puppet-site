@@ -8,7 +8,7 @@ class profile::packages {
     notify {"This is a $systype" :}
   }
   elsif $facts['systype'] == 'server' {
-    notice ('This is not a server #systype $1')
+    notice ('This is not a server $systype $1')
     notify {"this is a server $1 $systype" :}
   }
 
