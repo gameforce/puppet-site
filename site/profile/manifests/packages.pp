@@ -19,6 +19,14 @@ class profile::packages {
        require  => Yumrepo["ius"],
     }
 
+    # enable pipeline toolbox on autostart
+    file { '/etc/xdg/autostart/toolbox.desktop':
+      ensure          =>  'present',
+      owner           =>  'root',
+      group           =>  'root',
+      mode            =>  '0644',
+      source          =>  'puppet:///files/stellar/toolbox.desktop',
+    }
   }
   elsif $facts['systype'] == 'server' {
      #notify {"this is a $systype Installing server packages" :}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/net/software/bin/toolbox
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Pipeline Toolbox
+Name=Pipeline Toolbox
+Comment[en_US]=Pipeline Toolbox
+Comment=Pipeline Toolbox
