@@ -13,4 +13,7 @@ systems   -fstype=nfs,rw,soft  syn:/volume1/systems
 software  -fstype=nfs,rw,soft  syn:/volume1/software
 
 # licensing
-autodesk  -fstype=nfs,rw,soft  srv1:/opt/Autodesk
+# autodesk  -fstype=nfs,rw,soft  srv1:/opt/Autodesk
+
+# library
+library   -fstype=nfs,rw,soft  syn:/volume1/library
