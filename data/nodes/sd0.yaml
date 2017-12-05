@@ -2,5 +2,4 @@
   classes:
     - role::base
     - role::jira
-    - role::puppet
     - role::nginx
