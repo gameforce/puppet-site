@@ -3,6 +3,5 @@
 class profile::java {
   class { 'java':
     distribution      => 'jre',
-    java_default_home => '/opt/java',
   }
 }
