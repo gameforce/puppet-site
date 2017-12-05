@@ -2,7 +2,7 @@
 
 class profile::jira {
   class { 'jira':
-    javahome    => '/usr/bin',
+    javahome    => '/usr',
     deploy_module => 'archive',
   }
 }
