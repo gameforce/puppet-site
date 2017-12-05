@@ -2,6 +2,7 @@
 
 class profile::java {
   class { 'java':
-    distribution => 'jre',
+    distribution      => 'jre',
+    java_default_home => '/opt/java',
   }
 }
