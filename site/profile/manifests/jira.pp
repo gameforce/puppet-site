@@ -2,9 +2,9 @@
 
 class profile::jira {
   include postgresql::server
-
-    postgresql::database_user{'jiraadm':
-    password_hash => 'mypassword',
+  include postgresql::role{'jiraadm':
+    password_hash => '34819d7beeabb9260a5c854bc85b3e44',
+    createdb => 'true',
   }
 
 
