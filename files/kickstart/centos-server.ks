@@ -72,11 +72,11 @@ echo "systype=server" > /etc/puppetlabs/facter/facts.d/systype.txt
 /usr/sbin/ntpdate clock
 /sbin/hwclock -wu
 
-# bootstap puppet
-echo "Running puppet for the first time..."
-sleep 5
-/opt/puppetlabs/bin/puppet agent --test
-/opt/puppetlabs/bin/puppet agent --test
+# bootstap puppet -- once we have our hostname set
+#echo "Running puppet for the first time..."
+#sleep 5
+#/opt/puppetlabs/bin/puppet agent --test
+#/opt/puppetlabs/bin/puppet agent --test
 
 #Tell us we have reached the end
 echo "We have reached the end of the post-install script"
