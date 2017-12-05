@@ -4,6 +4,7 @@
      - role::jira
      - role::nginx
      - role::java
+     - postgresql::server
 
     postgresql::role: jiraadm
     postgresql::role::createdb: true
