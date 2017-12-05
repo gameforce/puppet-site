@@ -6,6 +6,6 @@
      - role::java
      - postgresql::server
 
-    postgresql::role: jiraadm
+    postgresql::role: 'jiraadm'
     postgresql::role::createdb: true
-    postgresql::role::password_hash: 34819d7beeabb9260a5c854bc85b3e44
+    postgresql::role::password_hash: '34819d7beeabb9260a5c854bc85b3e44'
