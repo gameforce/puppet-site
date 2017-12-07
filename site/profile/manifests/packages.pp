@@ -7,8 +7,8 @@ class profile::packages {
        package { 'kmod-wacom': ensure => 'installed', }
        package { 'xorg-x11-drv-wacom': ensure => 'installed', }
        package{'epson-inkjet-printer-escpr2':
-            provider => 'rpm',
-            ensure => 'present',
+            provider => 'yum',
+            ensure => 'installed',
             source => '/net/systems/repos/stellar/epson-inkjet-printer-escpr2-1.0.9-1lsb3.2.x86_64.rpm',
         }
 
