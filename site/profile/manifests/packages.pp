@@ -6,6 +6,12 @@ class profile::packages {
        #notify {"This is a $systype Installing desktop packages" :}
        package { 'kmod-wacom': ensure => 'installed', }
        package { 'xorg-x11-drv-wacom': ensure => 'installed', }
+       package{'epson-inkjet-printer-escpr2':
+            provider => 'rpm',
+            ensure => 'present',
+            source => '/net/systems/repos/stellar/epson-inkjet-printer-escpr2-1.0.9-1lsb3.2.x86_64.rpm',
+        }
+
 
     # ius repo and package for python3
     yumrepo { 'ius':
