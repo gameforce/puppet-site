@@ -5,6 +5,7 @@ include '::cups'
 
   cups_queue { 'WF-3720':
     ensure => 'printer',
+    enabled => 'true',
     ppd    => '/usr/share/cups/model/WF-3720.ppd',
     uri    => 'lpd://172.16.21.37:515/PASSTHRU'
   }
