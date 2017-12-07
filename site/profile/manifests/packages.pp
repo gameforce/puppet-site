@@ -42,5 +42,6 @@ class profile::packages {
     package { 'screen': ensure => 'installed', }
     package { 'vim-enhanced': ensure => 'installed', }
     package { 'htop': ensure => 'installed', }
+    package { 'net-tools': ensure => 'installed', }
   }
 }
