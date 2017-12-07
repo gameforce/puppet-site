@@ -3,7 +3,7 @@ class profile::cups {
 
 include '::cups'
 
-  cups_queue { 'MinimalPPD':
+  cups_queue { 'WF-3720':
     ensure => 'printer',
     ppd    => '/usr/share/cups/model/WF-3720.ppd',
     uri    => 'lpd://172.16.21.37:515/PASSTHRU'
