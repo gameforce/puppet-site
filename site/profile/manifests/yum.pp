@@ -10,3 +10,4 @@ include 'yum'
     gpgcheck  => false,
     target    => '/etc/yum.repos.d/stellar.repo'
   }
+}
