@@ -4,11 +4,11 @@
   - role::ssh
 
 yum::managed_repos:
-   - 'stellar'
+   - 'stellar_repo'
    - 'epel'
 
 yum::repos:
-   stellar:
+   stellar_repo:
      ensure: 'present'
      enabled: 'true'
      descr: 'Stellar Repo'
