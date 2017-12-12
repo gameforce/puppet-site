@@ -2,7 +2,6 @@
   classes:
     - role::base
     - role::repo
-    - include 'yum'
 
 yum::managed_repos:
   - 'stellar'
