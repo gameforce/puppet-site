@@ -2,3 +2,4 @@
   classes:
     - role::base
     - role::repo
+    - role::windows
