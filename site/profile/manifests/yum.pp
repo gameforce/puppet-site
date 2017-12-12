@@ -6,7 +6,7 @@ include 'yum'
     ensure    => 'present',
     enabled   => 'true',
     descr     => 'Stellar Repo'
-    baseurl   => 'http://repo/stellar/$basesearch/'
+    baseurl   => 'http://repo/stellar/x86_64/'
     gpgcheck  => false
     target    => '/etc/yum.repos.d/stellar.repo'
   }
