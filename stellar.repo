@@ -1,0 +1,5 @@
+[stellar]
+name=Stellar 3rd Party Packages
+baseurl=http://repo/stellar/$basearch
+enabled=1
+gpgcheck=0
