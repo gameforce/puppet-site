@@ -2,7 +2,7 @@ class profile::yum {
 
 include 'yum'
 
-  managed_repos { 'stellar':
+  yum::managed_repos { 'stellar':
     ensure    => 'present',
     enabled   => 'true',
     descr     => 'Stellar Repo',

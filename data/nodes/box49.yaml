@@ -3,4 +3,3 @@
   classes:
     - profile::accounts
     - profile::windows
-    - role::crap
