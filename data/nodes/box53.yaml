@@ -2,7 +2,7 @@
   classes:
     - role::base
     - role::repo
-    - yum 
+    - yum
 
   #yum::repos { 'stellar':
   #    ensure    => 'present',
