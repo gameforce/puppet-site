@@ -13,8 +13,8 @@
   #    target    => '/etc/yum.repos.d/stellar.repo'
   #  }
 
-yum::managed_repos:
-  - 'stellar'
+#yum::managed_repos:
+#  - 'stellar'
 
 yum::repos:
   stellar:
