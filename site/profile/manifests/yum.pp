@@ -10,8 +10,7 @@ yum::versionlock { '0:bash-4.1.2-9.el6_2.*':
   ensure => present,
 }
 
-
-  yum::repos { 'stellar':
+repos { 'stellar':
     ensure    => 'present',
     enabled   => 'true',
     descr     => 'Stellar Repo',
