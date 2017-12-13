@@ -6,7 +6,7 @@ defaults:                          # Used for any hierarchy level that omits the
 
 hierarchy:
   - name: "Nodes"                        # Human-readable name.
-    path: "nodes/%{hostname}.yaml"     # File path, relative to datadir. IMPORTANT: include the file extension!
+    path: "nodes/%{::hostname}.yaml"     # File path, relative to datadir. IMPORTANT: include the file extension!
 
   - name: "Common Data"
     path: "common.yaml"
