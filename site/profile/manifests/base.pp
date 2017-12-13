@@ -2,7 +2,7 @@ class profile::base {
 
   # includes
   include ::openvmtools
-  include yum
+  # include yum
 
   # stellar environment and repo
   $stellarpath = '/net/software/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
@@ -68,7 +68,7 @@ class profile::base {
       'krb5_realm'                     => upcase($::domain),
       'realmd_tags'                    => 'manages-system joined-with-adcli',
       'cache_credentials'              => 'True',
-      'id_provider'                    => 'ad',
+      'id_provider'                     => 'ad',
       'access_provider'                => 'ad',
       'krb5_store_password_if_offline' => 'True',
       'default_shell'                  => '/bin/bash',
