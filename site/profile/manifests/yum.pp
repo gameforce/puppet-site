@@ -6,8 +6,7 @@ class { 'yum':
     managed_repos =>  [ 'stellar' ],
   }
 
-yum::managed_repos { 'stellar':
-    repos     => 'stellar',
+yum::repos { 'stellar':
     ensure    => 'present',
     enabled   => 'true',
     descr     => 'Stellar Repo',
