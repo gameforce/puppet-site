@@ -11,7 +11,7 @@ yum::versionlock { '0:bash-4.1.2-9.el6_2.*':
 }
 
 
-  managed_repos { 'stellar':
+  yum::managed_repos { 'stellar':
     ensure    => 'present',
     enabled   => 'true',
     descr     => 'Stellar Repo',
