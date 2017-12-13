@@ -2,6 +2,3 @@
   classes:
   - role::base
   - role::ssh
-
-yum::managed_repos:
-    - 'stellar'
