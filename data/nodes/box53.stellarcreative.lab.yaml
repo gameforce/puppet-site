@@ -1,6 +1,4 @@
 ---
-  lookup_options
-  
   classes:
     - role::base
     - role::repo
