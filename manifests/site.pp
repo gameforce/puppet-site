@@ -3,4 +3,4 @@
 # lookup('classes', {merge =>  'hash'})
 #hiera_include(classes)
 #lookup('classes', {merge =>  'hash'})
-include lookup('classes', { 'merge' => 'array' })
+lookup('classes', { 'merge' => 'hash' })
