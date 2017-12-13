@@ -4,15 +4,6 @@
     - role::repo
     - yum
 
-  #yum::repos { 'stellar':
-  #    ensure    => 'present',
-  #    enabled   => 'true',
-  #    descr     => 'Stellar Repo',
-  #    baseurl   => 'http://repo/stellar/x86_64/',
-  #    gpgcheck  => false,
-  #    target    => '/etc/yum.repos.d/stellar.repo'
-  #  }
-
 yum::managed_repos:
   - 'stellar'
 
@@ -25,3 +16,15 @@ yum::repos:
     gpgcheck: false
     gpgkey: ''
     target: '/etc/yum.repos.d/stellar.repo'
+
+yum::managed_repos:
+    - 'example_repo'
+yum::repos:
+    example_repo:
+        ensure: 'present'
+        enabled: true
+        descr: 'Example Repo'
+        baseurl: 'https://repos.example.com/example/'
+        gpgcheck: true
+        gpgkey: 'file:///etc/pki/gpm-gpg/RPM-GPG-KEY-Example'
+        target: '/etc/yum.repos.d/example.repo'
