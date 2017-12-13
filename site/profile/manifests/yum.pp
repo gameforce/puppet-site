@@ -1,6 +1,6 @@
 class profile::yum {
 
-include 'yum'
+#include 'yum'
 
 class { 'yum':
   managed_repos =>  'stellar',
