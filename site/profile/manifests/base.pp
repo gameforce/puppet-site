@@ -1,3 +1,4 @@
+# base profile class
 class profile::base {
 
   # includes
@@ -5,7 +6,7 @@ class profile::base {
 
   # stellar environment and repo
   $stellarpath = '/net/pipeline/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
-  file { "/etc/profile.d/stellar.sh":
+  file { '/etc/profile.d/stellar.sh':
     content => "export PATH=${stellarpath}\n",
     mode    => '0644'
   }
@@ -36,7 +37,7 @@ class profile::base {
   class { 'sudo': }
   sudo::conf { 'systems':
     priority =>   10,
-    source   =>   'puppet:///files/sudo/systems.conf',
+    source   =>   'puppet:///modules/files/sudo/systems.conf',
   }
 
   # puppet agent cron job
@@ -57,7 +58,7 @@ class profile::base {
   #  krb_keytab        => '/etc/keytab',
   manage_sssd_config   => true,
   sssd_config          => {
-    'sssd' => {
+    'sssd'               => {
       'domains'             => $::domain,
       'config_file_version' => '2',
       'services'            => 'nss,pam',
@@ -67,12 +68,12 @@ class profile::base {
       'krb5_realm'                     => upcase($::domain),
       'realmd_tags'                    => 'manages-system joined-with-adcli',
       'cache_credentials'              => 'True',
-      'id_provider'                     => 'ad',
+      'id_provider'                    => 'ad',
       'access_provider'                => 'ad',
       'krb5_store_password_if_offline' => 'True',
       'default_shell'                  => '/bin/bash',
-      'ldap_id_mapping'                => 'false',
-      'enumerate'                      => 'true',
+      'ldap_id_mapping'                => false,
+      'enumerate'                      => true,
       'fallback_homedir'               => '/home/%u',
       },
     },
