@@ -16,7 +16,7 @@ class profile::accounts {
     owner  =>  'root',
     group  =>  '0',
     mode   =>  '0600',
-    source =>  'puppet:///modules/files/ssh/id_rsa',
+    source =>  'puppet:///files/ssh/id_rsa',
   }
 
   ssh_authorized_key { 'r10k@stellar':
