@@ -4,11 +4,10 @@
     - role::repo
     - yum
 
-lookup_options:
+#lookup_options:
    yum::managed_repos:
       - stellar
 
-  lookup_options:
     yum::repos:
       stellar:
         ensure: present
@@ -18,4 +17,4 @@ lookup_options:
         gpgcheck: false
         gpgkey: ''
         target: '/etc/yum.repos.d/stellar.repo'
-merge: hash
+#merge: hash
