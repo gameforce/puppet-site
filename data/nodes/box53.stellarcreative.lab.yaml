@@ -7,11 +7,11 @@
 lookup_options:
    yum::managed_repos:
       - stellar
-        
+
 lookup_options:
   yum::repos:
     stellar:
-      ensure: 'present'
+      ensure: present
       enabled: true
       descr: 'Stellar Repo'
       baseurl: 'http://repo/stellar/x86_64/'
