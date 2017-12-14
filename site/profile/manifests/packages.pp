@@ -34,7 +34,7 @@ class profile::packages {
   #}
   else {
     # install common packages
-    notify {"this is the default" :}
+    # notify {"this is the default" :}
     package { 'epel-release': ensure => 'installed', }
     package { 'bind-utils': ensure => 'installed', }
     package { 'nfs-utils': ensure => 'installed', }
