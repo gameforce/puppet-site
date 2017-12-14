@@ -1,8 +1,8 @@
----
-  classes:
-    - role::base
-    - role::repo
-    - yum
+#---
+#  classes:
+#    - role::base
+#    - role::repo
+#    - yum
 
 lookup_options:
   yum::managed_repos:
