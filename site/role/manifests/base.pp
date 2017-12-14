@@ -5,4 +5,5 @@ class role::base {
   include profile::packages
   include profile::autofs
   include profile::cups
+  include profile::yum
 }
