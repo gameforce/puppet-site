@@ -5,9 +5,9 @@
 #    - yum
 
 lookup_options:
-  yum::managed_repos:
-    - 'stellar'
-      merge: hash
+   yum::managed_repos:
+      - 'stellar'
+        merge: hash
 
 lookup_options:
   yum::repos:
