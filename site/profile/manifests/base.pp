@@ -2,7 +2,6 @@ class profile::base {
 
   # includes
   include ::openvmtools
-  # include yum
 
   # stellar environment and repo
   $stellarpath = '/net/pipeline/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
