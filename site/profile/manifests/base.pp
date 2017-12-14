@@ -37,7 +37,7 @@ class profile::base {
   class { 'sudo': }
   sudo::conf { 'systems':
     priority =>   10,
-    source   =>   'puppet:///modules/files/sudo/systems.conf',
+    source   =>   'puppet:///files/sudo/systems.conf',
   }
 
   # puppet agent cron job
