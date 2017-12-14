@@ -6,7 +6,7 @@ class profile::autofs {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/files/autofs/autofs.conf',
+    source => 'puppet:///files/autofs/autofs.conf',
     notify => Service['autofs'],
   }
 
@@ -14,11 +14,11 @@ class profile::autofs {
     mount_files     => {
       job => {
         mountpoint  => '/job',
-        file_source => 'puppet:///modules/files/autofs/auto.job',
+        file_source => 'puppet:///files/autofs/auto.job',
       },
       net => {
         mountpoint  => '/net',
-        file_source => 'puppet:///modules/files/autofs/auto.net',
+        file_source => 'puppet:///files/autofs/auto.net',
       }
     }
   }
