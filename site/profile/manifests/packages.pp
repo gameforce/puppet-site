@@ -29,9 +29,9 @@ class profile::packages {
       source          =>  'puppet:///files/stellar/toolbox.desktop',
     }
   }
-  elsif $facts['systype'] == 'server' {
-     #notify {"this is a $systype Installing server packages" :}
-  }
+  #elsif $facts['systype'] == 'server' {
+  #   #notify {"this is a $systype Installing server packages" :}
+  #}
   else {
     # install common packages
     notify {"this is the default" :}
