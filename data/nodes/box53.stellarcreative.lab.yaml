@@ -4,17 +4,15 @@
     - role::repo
     - yum
 
-#lookup_options:
-   yum::managed_repos:
+  yum::managed_repos:
       - stellar
 
-    yum::repos:
-      stellar:
-        ensure: present
-        enabled: true
-        descr: 'Stellar Repo'
-        baseurl: 'http://repo/stellar/x86_64/'
-        gpgcheck: false
-        gpgkey: ''
-        target: '/etc/yum.repos.d/stellar.repo'
-#merge: hash
+  yum::repos:
+    stellar:
+      ensure: present
+      enabled: true
+      descr: 'Stellar Repo'
+      baseurl: 'http://repo/stellar/x86_64/'
+      gpgcheck: false
+      gpgkey: ''
+      target: '/etc/yum.repos.d/stellar.repo'
