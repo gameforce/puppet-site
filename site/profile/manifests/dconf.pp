@@ -1,6 +1,6 @@
 class profile::dconf {
-  # new bits
-  notify {"NEW: testing new bits":}
+
+  #notify {"NEW: testing new bits":}
   class { 'gnome3':
     button\_power     => $gnome3::params::button_power,
     background        => undef, #/usr/share/backgrounds/smile-wallpaper.jpg
