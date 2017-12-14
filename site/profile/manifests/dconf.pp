@@ -10,7 +10,6 @@ class profile::dconf {
     software         => undef,
     games            => $gnome3::params::games,
     delete_games     => true,
-    gdm              => '',
     webproxy_mode    => $gnome3::params::webproxy_mode,
     webproxy_autourl => '',
     webproxy_locked  => true,
