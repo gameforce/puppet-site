@@ -1,3 +1,4 @@
+# Configure dconf defaults for gnome3
 class profile::dconf {
 
   #notify {"NEW: testing new bits":}
