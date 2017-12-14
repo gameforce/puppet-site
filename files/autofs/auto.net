@@ -1,16 +1,19 @@
 # managed by puppet
 
 # home directories
-home      -fstype=nfs,rw,soft  srv1:/data/net/home
+home      -fstype=nfs,rw,nosuid,soft  syn:/volume1/users
 
 # pipeline
-pipeline  -fstype=nfs,rw,soft  srv1:/data/net/pipeline
+pipeline  -fstype=nfs,rw,soft  syn:/volume1/pipeline
 
 # systems
-systems   -fstype=nfs,rw,soft  srv1:/data/net/systems
+systems   -fstype=nfs,rw,soft  syn:/volume1/systems
 
 # software
-software  -fstype=nfs,rw,soft  srv1:/data/net/software
+software  -fstype=nfs,rw,soft  syn:/volume1/software
 
 # licensing
-autodesk  -fstype=nfs,rw,soft  srv1:/opt/Autodesk
+# autodesk  -fstype=nfs,rw,soft  srv1:/opt/Autodesk
+
+# library
+library   -fstype=nfs,rw,soft  syn:/volume1/library

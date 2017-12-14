@@ -1,4 +1,3 @@
-# Get puppet to copy this file to /etc/xdg/autostart/toolbox.desktop
 [Desktop Entry]
 Type=Application
 Exec=/net/software/bin/toolbox

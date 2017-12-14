@@ -1,4 +1,4 @@
 ---
   classes:
     - role::base
-    - role::samba
+    - role::nginx

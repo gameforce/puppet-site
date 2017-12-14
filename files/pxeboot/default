@@ -1,3 +1,4 @@
+# This file is managed by puppet do not edit
 # /var/lib/tftpboot/pxelinux.cfg/default
 
 DEFAULT menu.c32
