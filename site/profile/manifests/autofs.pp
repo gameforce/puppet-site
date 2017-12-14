@@ -1,12 +1,12 @@
-class profile::autofs { 
+class profile::autofs {
   # enable browse mode in autofs.conf
   file { '/etc/autofs.conf':
-    ensure          =>  'present',
-    owner           =>  'root',
-    group           =>  'root',
-    mode            =>  '0644',
-    source          =>  'puppet:///files/autofs/autofs.conf',
-    notify          =>  Service['autofs'],
+    ensure          => 'present',
+    owner           => 'root',
+    group           => 'root',
+    mode            => '0644',
+    source          => 'puppet:///files/autofs/autofs.conf',
+    notify          => Service['autofs'],
   }
 
   class { 'autofs':
