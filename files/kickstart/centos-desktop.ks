@@ -3,7 +3,25 @@ url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
-network --noipv6 --onboot=yes --bootproto dhcp
+%include /tmp/network.txt
+
+%pre
+#!/bin/sh
+exec < /dev/tty3 > /dev/tty3 2>&1
+chvt 3
+hn=""
+
+while [ "$hn" == "" ]; do
+ clear
+ echo " *** Please enter the following details: *** "
+ echo
+ read -p "Hostname: " hn
+done
+clear
+chvt 1
+echo "network --device eth0 --bootproto static --noipv6 --hostname ${hn}" > /tmp/network.txt
+
+# network --noipv6 --onboot=yes --bootproto dhcp
 authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/
 firewall --disabled
