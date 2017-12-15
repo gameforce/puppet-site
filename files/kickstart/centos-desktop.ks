@@ -20,6 +20,7 @@ done
 clear
 chvt 1
 echo "network --device eth0 --bootproto static --noipv6 --hostname ${hn}" > /tmp/network.txt
+%end
 
 # network --noipv6 --onboot=yes --bootproto dhcp
 authconfig --enableshadow --enablemd5
