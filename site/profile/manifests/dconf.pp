@@ -2,8 +2,8 @@
 class profile::dconf {
 
   # used by desktop and
-  desktop::gnome exec { 'dconf_update': command => '/usr/bin/dconf update', refreshonly => true, require => Package['dconf'], }
-  
+  # desktop::gnome { 'dconf_update': command => '/usr/bin/dconf update', refreshonly => true, require => Package['dconf'], }
+
   file { '/etc/dconf/profile/gdm':
     ensure    => 'present',
     owner     => 'root',
@@ -18,6 +18,6 @@ class profile::dconf {
     group     => 'root',
     mode      => '0644',
     source    => 'puppet:///files/dconf/00-login-screen',
-    notify    => Exec['dconf_update'],
+    notify    => Exec['dconf update'],
   }
 }
