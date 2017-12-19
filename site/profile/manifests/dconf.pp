@@ -2,19 +2,20 @@
 class profile::dconf {
 
   #notify {"NEW: testing new bits":}
-  file { '/etc/ssh/sshd_config':
+  file { '/etc/dconf/profile/gdm':
     ensure    => 'present',
     owner     => 'root',
     group     => 'root',
-    mode      => '0600',
-    source    => 'puppet:///files/ssh/sshd_config',
+    mode      => '0644',
+    source    => 'puppet:///files/dconf/gdm',
   }
 
-  file { '/etc/ssh/sshd_config':
+  file { '/etc/dconf/db/gdm.d/00-login-screen':
     ensure    => 'present',
     owner     => 'root',
     group     => 'root',
-    mode      => '0600',
-    source    => 'puppet:///files/ssh/sshd_config',
+    mode      => '0644',
+    source    => 'puppet:///files/dconf/00-login-screen',
   }
+  notify  => Exec['dconf_update'],
 }
