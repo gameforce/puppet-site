@@ -20,4 +20,11 @@ class profile::dconf {
     source    => 'puppet:///files/dconf/00-login-screen',
     notify    => Exec['dconf update'],
   }
+
+  exec { "dconf update":
+   command => "/usr/bin/dconf update",
+   user => 'root',
+   group => 'root',
+   refreshonly => true,
+  }
 }
