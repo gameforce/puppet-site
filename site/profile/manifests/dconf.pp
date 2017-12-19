@@ -16,6 +16,6 @@ class profile::dconf {
     group     => 'root',
     mode      => '0644',
     source    => 'puppet:///files/dconf/00-login-screen',
-    notify  => Exec['dconf_update'],
+    notify    => Exec['dconf_update'],
   }
 }
