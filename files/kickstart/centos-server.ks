@@ -3,7 +3,7 @@ url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
-network --noipv6 --onboot=yes --bootproto query
+network --noipv6 --onboot=yes --bootproto=dhcp --hostname=query
 authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/
 firewall --disabled
