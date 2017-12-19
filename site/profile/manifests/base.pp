@@ -10,10 +10,6 @@ class profile::base {
     content => "export PATH=${stellarpath}\n",
     mode    => '0644'
   }
-#  file { "/etc/yum.repos.d/stellar.repo":
-#    source   =>   'puppet:///files/stellar/stellar.repo',
-#    mode    => '0644'
-#  }
 
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
