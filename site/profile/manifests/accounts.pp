@@ -19,6 +19,14 @@ class profile::accounts {
     source =>  'puppet:///files/ssh/id_rsa',
   }
 
+  file { '/root/.ssh/id_rsa.pub':
+    ensure  =>  'present',
+    owner   =>  'root',
+    group   =>  '0',
+    mode    =>  '0600',
+    source  =>  'puppet:///files/ssh/id_rsa.pub'
+  }
+
   ssh_authorized_key { 'r10k@stellar':
     ensure =>  present,
     user   =>  'root',
