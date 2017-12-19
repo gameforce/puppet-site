@@ -22,9 +22,9 @@ class profile::dconf {
   }
 
   exec { "dconf update":
-   command => "/usr/bin/dconf update",
-   user => 'root',
-   group => 'root',
-   refreshonly => true,
+    command     => "/usr/bin/dconf update",
+    user        => 'root',
+    group       => 'root',
+    refreshonly => true,
   }
 }
