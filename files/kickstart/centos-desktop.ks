@@ -12,8 +12,8 @@ timezone --utc America/Vancouver
 exec < /dev/tty6 > /dev/tty6
 chvt 6
 clear
-myip=`hostname -i | awk '{print $1}'`
-myhostname=box$(echo $myip | cut -d . -f 4)
+myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
+myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
 echo -n "My IP is $myip and my hostname should be $myhostname, "
 echo -n "What is my hostname? "
 read hostn
