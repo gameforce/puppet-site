@@ -5,22 +5,27 @@ keyboard us
 timezone --utc America/Vancouver
 #%include /tmp/network.txt
 
-#%pre
-##!/bin/sh
-#exec < /dev/tty3 > /dev/tty3 2>&1
-#chvt 3
-#hn=""
+%pre
+#!/bin/bash
 
-#while [ "$hn" == "" ]; do
-# clear
-# echo " *** Please enter the following details: *** "
-# echo
-# read -p "Hostname: " hn
-#done
-#clear
-#chvt 1
-#echo "network --device eth0 --bootproto static --noipv6 --hostname ${hn}" > /tmp/network.txt
-#%end
+###DEMANDE DU HOSTNAME#########################################
+exec < /dev/tty6 > /dev/tty6
+chvt 6
+clear
+echo "################################"
+echo "# Une petite question ! #"
+echo "################################"
+echo -n "Entrer le nom de la machine (hostname): "
+read hostn
+hostname $hostn
+echo -e "NETWORKING=yes\nHOSTNAME=$hostn" > /etc/sysconfig/network
+echo "Vous avez choisit $hostn. Appuyer sur entrer pour continuer ou ctrl alt suppr pour redemarrer"
+read
+###Go back to tty1##
+exec < /dev/tty1 > /dev/tty1
+chvt 1
+################################################################
+%end
 
 network --noipv6 --onboot=yes --bootproto dhcp
 authconfig --enableshadow --enablemd5
