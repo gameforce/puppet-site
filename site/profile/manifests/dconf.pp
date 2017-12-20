@@ -29,6 +29,7 @@ class profile::dconf {
     mode      => '0644',
     source    => 'puppet:///files/dconf/common',
     notify    => Exec['dconf update'],
+  }
 
   exec { "dconf update":
     command     => "/usr/bin/dconf update",
