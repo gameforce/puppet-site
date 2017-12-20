@@ -3,6 +3,26 @@ url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
+
+%pre
+# Set the hostname
+#!/bin/bash
+exec < /dev/tty6 > /dev/tty6
+chvt 6
+clear
+myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
+myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
+echo -n "My IP is $myip and my hostname should be $myhostname, "
+echo -n "What is my hostname? "
+read hostn
+hostname $hostn
+echo -e "NETWORKING=yes\nHOSTNAME=$hostn" > /etc/sysconfig/network
+echo "You entered $hostn. Press enter to continue or ctrl-alt-del to reboot"
+read
+exec < /dev/tty1 > /dev/tty1
+chvt 1
+%end
+
 network --noipv6 --onboot=yes --bootproto=dhcp --hostname=query
 authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/

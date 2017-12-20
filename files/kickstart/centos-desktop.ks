@@ -6,9 +6,8 @@ timezone --utc America/Vancouver
 #%include /tmp/network.txt
 
 %pre
-#!/bin/bash
-
 # Set the hostname
+#!/bin/bash
 exec < /dev/tty6 > /dev/tty6
 chvt 6
 clear
