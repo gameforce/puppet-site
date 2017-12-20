@@ -8,23 +8,21 @@ timezone --utc America/Vancouver
 %pre
 #!/bin/bash
 
-###DEMANDE DU HOSTNAME#########################################
+# Set the hostname
 exec < /dev/tty6 > /dev/tty6
 chvt 6
 clear
-echo "################################"
-echo "# Une petite question ! #"
-echo "################################"
-echo -n "Entrer le nom de la machine (hostname): "
+myip=`hostname -i | awk '{print $1}'`
+myhostname=box$(echo $myip | cut -d . -f 4)
+echo -n "My IP is $(myip) and my hostname should be $myhostname"
+echo -n "What is my hostname? "
 read hostn
 hostname $hostn
 echo -e "NETWORKING=yes\nHOSTNAME=$hostn" > /etc/sysconfig/network
-echo "Vous avez choisit $hostn. Appuyer sur entrer pour continuer ou ctrl alt suppr pour redemarrer"
+echo "You entered $hostn. Press enter to continue or ctrl-alt-del pour reboot"
 read
-###Go back to tty1##
 exec < /dev/tty1 > /dev/tty1
 chvt 1
-################################################################
 %end
 
 network --noipv6 --onboot=yes --bootproto dhcp
