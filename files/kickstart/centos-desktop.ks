@@ -14,7 +14,7 @@ chvt 6
 clear
 myip=`hostname -i | awk '{print $1}'`
 myhostname=box$(echo $myip | cut -d . -f 4)
-echo -n "My IP is $(myip) and my hostname should be $myhostname"
+echo -n "My IP is $myip and my hostname should be $myhostname"
 echo -n "What is my hostname? "
 read hostn
 hostname $hostn
