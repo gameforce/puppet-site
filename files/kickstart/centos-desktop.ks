@@ -19,7 +19,7 @@ echo -n "What is my hostname? "
 read hostn
 hostname $hostn
 echo -e "NETWORKING=yes\nHOSTNAME=$hostn" > /etc/sysconfig/network
-echo "You entered $hostn. Press enter to continue or ctrl-alt-del pour reboot"
+echo "You entered $hostn. Press enter to continue or ctrl-alt-del to reboot"
 read
 exec < /dev/tty1 > /dev/tty1
 chvt 1
