@@ -8,20 +8,19 @@ timezone --utc America/Vancouver
 %pre
 # Set the hostname
 #!/bin/bash
-# install ssh keys
-scp -r -o StrictHostKeyChecking=no nick.gotsinas@box53:.ssh /root/
 
 exec < /dev/tty6 > /dev/tty6
 chvt 6
 clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
 myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
+mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
 echo -n "My IP is $myip and my hostname should be $myhostname, "
 mkdir /mnt/tmp
 mount -o nolock syn:/volume1/systems /mnt/tmp
 cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
-ssh -o StrictHostKeyChecking=no administrator@ads1 Get-DhcpServerv4Lease -IPAddress $myip | Add-DhcpServerv4Reservation
+ssh -o StrictHostKeyChecking=no "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description “Linux machine” -Name $myhostname"
 echo -n "What is my hostname? "
 read hostn
 hostname $hostn
