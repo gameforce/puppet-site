@@ -22,6 +22,4 @@ class profile::ssh {
     ensure    =>  running,
     subscribe =>  File["/etc/ssh/sshd_config"],
   }
-  # attempt to register dhcp reservation
-  exec { 'ssh administrator@ads1 Get-DhcpServerv4Lease -IPAddress $myip | Add-DhcpServerv4Reservation':}
 }
