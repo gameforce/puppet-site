@@ -31,7 +31,7 @@ part / --size 8192 --grow --fstype xfs
 part swap --size 2048 --fstype swap
 
 # Services
-services --enabled=postfix,network,ntpd,ntpdate
+# services --enabled=postfix,network,ntpd,ntpdate
 
 # Reboot
 reboot
