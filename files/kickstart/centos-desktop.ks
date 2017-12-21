@@ -15,18 +15,15 @@ clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
 myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
 mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
-echo -n "My IP is $myip and my hostname should be $myhostname, "
 mkdir /mnt/tmp
 mount -o nolock syn:/volume1/systems /mnt/tmp
 cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
-ssh -o StrictHostKeyChecking=no "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
-echo -n "What is my hostname? "
-read hostn
-hostname $hostn
-echo -e "NETWORKING=yes\nHOSTNAME=$hostn" > /etc/sysconfig/network
-echo "You entered $hostn. Press enter to continue or ctrl-alt-del to reboot"
-read
+ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
+echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
+echo -n "#######################################################################""
+echo -n "Setting IP to $myip and HOSTNAME to $myhostname, adding reservation"
+echo -n "#######################################################################"
 exec < /dev/tty1 > /dev/tty1
 chvt 1
 %end
