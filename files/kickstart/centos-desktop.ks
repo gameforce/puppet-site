@@ -13,6 +13,8 @@ chvt 6
 clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
 myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
+# add reservation
+ssh administrator@ads1 Get-DhcpServerv4Lease -IPAddress $myip | Add-DhcpServerv4Reservation
 echo -n "My IP is $myip and my hostname should be $myhostname, "
 echo -n "What is my hostname? "
 read hostn
