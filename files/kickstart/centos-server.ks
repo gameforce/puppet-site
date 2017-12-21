@@ -62,26 +62,26 @@ yum
 xfsprogs
 
 %pre
-# Set the hostname
+# Set the hostname -- for servers we need to change this to a DNS A Record registration via powershell
 #!/bin/bash
-exec < /dev/tty6 > /dev/tty6
-chvt 6
-clear
-myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
-myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
-mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
-mkdir /mnt/tmp
-mount -o nolock syn:/volume1/systems /mnt/tmp
-cp -r /mnt/tmp/tools/.ssh /root
-umount -l /mnt/tmp
-ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
-echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
-echo -n "#######################################################################""
-echo -n "Setting IP to $myip and HOSTNAME to $myhostname, adding reservation"
-echo -n "#######################################################################"
-exec < /dev/tty1 > /dev/tty1
-chvt 1
-%end
+#exec < /dev/tty6 > /dev/tty6
+#chvt 6
+#clear
+#myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
+#myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
+#mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
+#mkdir /mnt/tmp
+#mount -o nolock syn:/volume1/systems /mnt/tmp
+#cp -r /mnt/tmp/tools/.ssh /root
+#umount -l /mnt/tmp
+#ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
+#echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
+#echo -n "#######################################################################""
+#echo -n "Setting IP to $myip and HOSTNAME to $myhostname, adding reservation"
+#echo -n "#######################################################################"
+#exec < /dev/tty1 > /dev/tty1
+#chvt 1
+#%end
 
 %post --log=/root/install-post.log
 exec < /dev/tty3 > /dev/tty3
@@ -98,9 +98,10 @@ export PATH
 mkdir -p /etc/puppetlabs/facter/facts.d
 echo "systype=server" > /etc/puppetlabs/facter/facts.d/systype.txt
 
-# Sync time
+# Sync time and update
 /usr/sbin/ntpdate clock
 /sbin/hwclock -wu
+/usr/bin/yum -y update
 
 # bootstap puppet
 echo -n "Running puppet for the first time..."
