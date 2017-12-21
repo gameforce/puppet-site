@@ -45,7 +45,7 @@ openssh-clients
 openssh-server
 acpid
 autofs
-vixie-cron
+cronie
 crontabs
 git
 logrotate
