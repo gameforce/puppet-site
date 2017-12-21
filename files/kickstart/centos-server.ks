@@ -39,7 +39,7 @@ reboot
 # Packages
 %packages --nobase
 epel-release
-puppetlabs-release
+puppetlabs-release-pc1
 puppet-agent
 openssh-clients
 openssh-server
