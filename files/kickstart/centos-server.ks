@@ -21,9 +21,10 @@ timezone America/Vancouver
 eula --agreed
 %addon com_redhat_kdump --disable
 %end
-bootloader --location=mbr
+network --bootproto=static
 
 # Disk Partitioning
+bootloader --location=mbr
 zerombr
 clearpart --all --initlabel
 part /boot --size 500 --fstype ext2
