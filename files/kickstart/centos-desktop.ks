@@ -13,7 +13,6 @@ chvt 6
 clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
 myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
-# add reservation
 echo -n "My IP is $myip and my hostname should be $myhostname, "
 echo -n "What is my hostname? "
 read hostn
