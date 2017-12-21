@@ -27,20 +27,16 @@ eula --agreed
 #!/bin/bash
 echo -n "Enter FQDN Hostname: " > /dev/tty1
 read HOSTN
-echo -n "Enter IP Address:" > /dev/tty1
+echo -n "Enter IP Address: " > /dev/tty1
 read IP
-echo -n "Enter the Netmask:" > /dev/tty1
+echo -n "Enter the Netmask: " > /dev/tty1
 read MASK
-echo -n "Enter Gateway:" > /dev/tty1
+echo -n "Enter Gateway: " > /dev/tty1
 read GW
-echo -n "Enter Nameserver:" > /dev/tty1
+echo -n "Enter Nameserver: " > /dev/tty1
 read DNS
 echo "network --device eth0 --bootproto=static --ip=${IP} --netmask=${MASK} --gateway=${GW} --nameserver=${DNS} --hostname=${HOSTN}" > /tmp/network.txt
 %end
-
-# force hostname change
-/mnt/sysimage/bin/hostname $HOSTNAME
-rhn-profile-sync
 
 # Disk Partitioning
 bootloader --location=mbr
@@ -97,6 +93,10 @@ cp -Rvf /etc/sysconfig/network /mnt/sysimage/etc/sysconfig/network
 cp -Rvf /etc/sysconfig/resolv.conf /mnt/sysimage/etc/resolv.conf
 # Set-up eth0 with hostname
 cp /etc/sysconfig/network-scripts/ifcfg-eth0  /mnt/sysimage/etc/sysconfig/network-scripts/ifcfg-eth0
+
+# force hostname change
+/mnt/sysimage/bin/hostname $HOSTNAME
+rhn-profile-sync
 
 PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
