@@ -20,7 +20,7 @@ mkdir /mnt/tmp
 mount -o nolock syn:/volume1/systems /mnt/tmp
 cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
-ssh -o StrictHostKeyChecking=no "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description “Linux machine” -Name $myhostname"
+ssh -o StrictHostKeyChecking=no "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description 'Linux machine' -Name $myhostname"
 echo -n "What is my hostname? "
 read hostn
 hostname $hostn
