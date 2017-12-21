@@ -8,12 +8,31 @@ timezone --utc America/Vancouver
 %pre
 # Set the hostname
 #!/bin/bash
+# install ssh keys
+#---- Install our SSH key ----
+mkdir -m0700 /root/.ssh/
+
+cat <<EOF >/root/.ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6WN9RbxpLn9oa
+3IArG6MVT4F7BySNyjKp10itqC38qqNkeEYy8oAHjHh56ErnmrON
+Z1OomKALaRblJypRo8jBqcULsn3B4R0NW37vMLCyCulk/YasyMiD
+tU+yE74gkIbTUkbV2Q8t2PHgq69aqKVs2cgXC3znvd93yjqSJEgU
+jQjzWDiHifs/BTWEFWFSQ1VpQoaKlRueN0048pXC3u6QDldmo82b
+JunW6FSkq7fkim+ADSOpT/ptxO0AkEetgflvB1cSh1Ar+eyOU0lj
+ljBLp0D4ltjL2UU1HnwXn7o1CRW0JEyz/51PFK6OnwcgocGzmay3
+b5qd6Y6oPHznqCUp r10k@stellar
+EOF
+
+### set permissions
+chmod 0600 /root/.ssh/authorized_keys
+
 exec < /dev/tty6 > /dev/tty6
 chvt 6
 clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
 myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
 echo -n "My IP is $myip and my hostname should be $myhostname, "
+ssh -i /root/.ssh/id_rsa.pub administrator@ads1 Get-DhcpServerv4Lease -IPAddress $myip | Add-DhcpServerv4Reservation
 echo -n "What is my hostname? "
 read hostn
 hostname $hostn
