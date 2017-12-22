@@ -22,22 +22,6 @@ eula --agreed
 %addon com_redhat_kdump --disable
 %end
 
-# Network settings
-%pre
-#!/bin/bash
-echo -n "Enter FQDN Hostname: " > /dev/tty1
-read HOSTN
-echo -n "Enter IP Address: " > /dev/tty1
-read IP
-echo -n "Enter the Netmask: " > /dev/tty1
-read MASK
-echo -n "Enter Gateway: " > /dev/tty1
-read GW
-echo -n "Enter Nameserver: " > /dev/tty1
-read DNS
-echo "network --device eth0 --bootproto=static --ip=${IP} --netmask=${MASK} --gateway=${GW} --nameserver=${DNS} --hostname=${HOSTN}" > /tmp/network.txt
-%end
-
 # Disk Partitioning
 bootloader --location=mbr
 zerombr
@@ -87,16 +71,61 @@ echo "# Running Post Configuration   #"
 echo "################################"
 (
 
-#!/bin/bash
-# bring in hostname collected from %pre, then source it
-cp -Rvf /etc/sysconfig/network /mnt/sysimage/etc/sysconfig/network
-cp -Rvf /etc/sysconfig/resolv.conf /mnt/sysimage/etc/resolv.conf
-# Set-up eth0 with hostname
-cp /etc/sysconfig/network-scripts/ifcfg-eth0  /mnt/sysimage/etc/sysconfig/network-scripts/ifcfg-eth0
+# network setup
+%post
+hostname=""
+ip=""
+netmask=""
+gw=""
+opts=""
+answer="n"
+device="eth0"
+hwaddr=`ifconfig $device | grep -i hwaddr | sed -e 's#^.*hwaddr[[:space:]]*##I'`
+dns1="172.16.10.2"
+dns2="8.8.8.8"
 
-# force hostname change
-/mnt/sysimage/bin/hostname $HOSTNAME
-rhn-profile-sync
+curTTY=`tty`
+exec < $curTTY > $curTTY 2> $curTTY
+clear
+
+while [ x"$answer" != "xy" ] && [ x"$answer" != "xY" ] ; do
+        echo -n "enter hostname: "; read hostname
+        echo -n "enter ip: "; read ip
+        echo -n "enter netmask: "; read netmask
+        echo -n "enter default gw: "; read gw
+        echo
+
+        echo You entered:
+        echo -e "\thostname: $hostname"
+        echo -e "\tip: $ip"
+        echo -e "\tnetmask: $netmask"
+        echo -e "\tdefault gw: $gw"
+        echo -n "Is this correct? [y/n] "; read answer
+done
+
+if [ x"$opts" = "xy" ] ; then
+        opts=""
+fi
+
+sed -i -e 's#^\(HOSTNAME=\).*$#\1'"$hostname"'#' /etc/sysconfig/network
+echo GATEWAY=$gw >> /etc/sysconfig/network
+
+echo DEVICE=$device > $scrFile
+echo BOOTPROTO=static >> $scrFile
+echo ONBOOT=yes >> $scrFile
+echo NM_CONTROLLED=no >> $scrFile
+echo HWADDR=$hwaddr >> $scrFile
+echo IPADDR=$ip >> $scrFile
+echo NETMASK=$netmask >> $scrFile
+echo DNS1=$dns1 >> $scrFile
+echo DNS2=$dns2 >> $scrFile
+
+if [ "x$opts" != "x" ] ; then
+        echo 'ETHTOOL_OPTS="'"$opts"'"' >> $scrFile
+fi
+
+%end
+# end network setup
 
 PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
