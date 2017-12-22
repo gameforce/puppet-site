@@ -72,7 +72,6 @@ echo "################################"
 (
 
 # network setup
-%post
 hostname=""
 ip=""
 netmask=""
@@ -123,8 +122,6 @@ echo DNS2=$dns2 >> $scrFile
 if [ "x$opts" != "x" ] ; then
         echo 'ETHTOOL_OPTS="'"$opts"'"' >> $scrFile
 fi
-
-%end
 # end network setup
 
 PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
