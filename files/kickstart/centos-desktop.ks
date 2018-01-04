@@ -13,7 +13,7 @@ exec < /dev/tty6 > /dev/tty6
 chvt 6
 clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
-myhostname=box$(ip route get 8.8.8.8 | awk -F. '{print $NF;exit}')
+myhostname=box$(ip route get 172.16.10.2 | awk -F. '{print $NF;exit}')
 mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
 mkdir /mnt/tmp
 mount -o nolock syn:/volume1/systems /mnt/tmp
@@ -24,6 +24,8 @@ echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
 echo -n "#######################################################################""
 echo -n "Setting IP to $myip and HOSTNAME to $myhostname, adding reservation"
 echo -n "#######################################################################"
+read -p "Press enter to continue"
+
 exec < /dev/tty1 > /dev/tty1
 chvt 1
 %end
