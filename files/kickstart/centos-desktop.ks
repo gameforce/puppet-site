@@ -97,6 +97,9 @@ xorg-x11-fonts-ISO8859-1-100dpi
 xorg-x11-fonts-ISO8859-1-75dpi
 %end
 
+# Disable initial setup
+services --disabled="initial-setup-graphical"
+
 %pre
 %end
 
