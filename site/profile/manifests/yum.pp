@@ -2,6 +2,12 @@ class profile::yum {
 
 include 'yum'
 
+class { 'yum':
+  keep_kernel_devel => true,
+  clean_old_kernels => true,
+  exclude => 'kernel*',
+}
+
 #yum::versionlock { '0:kernel-3.10.0-693.5.2.el7.*':
 #  ensure => present,
 #  }
