@@ -2,7 +2,7 @@
 classes:
   - role::base
   - role::ssh
-  - role::dconf
+  #- role::dconf
 
 yum::managed_repos:
   - stellar
