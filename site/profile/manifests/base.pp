@@ -4,12 +4,20 @@ class profile::base {
   # includes
   include ::openvmtools
 
-  # stellar environment and repo
-  $stellarpath = '/net/pipeline/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+  # stellar environment
+  #$stellarpath = '/net/pipeline/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+  #file { '/etc/profile.d/stellar.sh':
+  #  content => "export PATH=${stellarpath}\n",
+  #  mode    => '0644'
+  #}
+
   file { '/etc/profile.d/stellar.sh':
-    content => "export PATH=${stellarpath}\n",
-    mode    => '0644'
-  }
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///files/stellar/stellar.sh',
+    }
 
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
