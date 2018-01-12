@@ -13,4 +13,4 @@ hierarchy:
     path: "common.yaml"
 
   - name: "Systype"
-    path: "systypes/%(facts.systype).yaml"
+    path: "systypes/%{facts.systype}.yaml"
