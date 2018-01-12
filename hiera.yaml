@@ -11,3 +11,6 @@ hierarchy:
 
   - name: "Common Data"
     path: "common.yaml"
+
+  - name: "Systype"
+    path: "systypes/%(facts.systype).yaml"
