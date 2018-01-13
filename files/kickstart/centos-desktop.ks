@@ -8,10 +8,6 @@ timezone --utc America/Vancouver
 %pre
 # Set the hostname
 #!/bin/bash
-
-exec < /dev/tty6 > /dev/tty6
-chvt 6
-clear
 myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
 myhostname=box$(ip route get 172.16.10.2 | awk -F. '{print $NF;exit}')
 mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
@@ -21,14 +17,7 @@ cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
 ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
 echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
-echo -e "####################################################################"
 echo -e "Setting IP to $myip and HOSTNAME to $myhostname adding reservation"
-echo -e "####################################################################"
-echo -e "Press enter to continue"
-read -p
-
-exec < /dev/tty1 > /dev/tty1
-chvt 1
 %end
 
 network --noipv6 --onboot=yes --bootproto dhcp
