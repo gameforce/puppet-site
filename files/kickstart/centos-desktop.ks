@@ -56,6 +56,7 @@ repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
 %packages --nobase --ignoremissing
 @core
 -biosdevname
+-gnome-initial-setup
 @fonts
 @gnome-desktop
 @graphical-administration-tools
