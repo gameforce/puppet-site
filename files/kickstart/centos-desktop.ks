@@ -22,9 +22,10 @@ umount -l /mnt/tmp
 ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
 echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
 echo -e "####################################################################"
-echo -e "Setting IP to $myip and HOSTNAME to $myhostname, adding reservation"
+echo -e "Setting IP to $myip and HOSTNAME to $myhostname adding reservation"
 echo -e "####################################################################"
-read -p "Press enter to continue"
+echo -e "Press enter to continue"
+read -p
 
 exec < /dev/tty1 > /dev/tty1
 chvt 1
