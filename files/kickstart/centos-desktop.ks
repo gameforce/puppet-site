@@ -73,6 +73,7 @@ nfs-utils
 autofs
 xfsprogs
 samba
+puppet-bootstrap
 ## needed by maya
 libXp
 compat-libtiff3
@@ -107,7 +108,7 @@ PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/u
 export PATH
 
 # install puppet, nux, kmod-nvidia and update
-rpm -ivh https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
+#rpm -ivh https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
 rpm -ivh http://ftp.osuosl.org/pub/elrepo/elrepo/el7/x86_64/RPMS/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 yum -y update
 yum -y install puppet
@@ -115,11 +116,7 @@ yum -y install kmod-nvidia
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 # bootstap puppet
-echo "Running puppet for the first time..."
-sleep 5
-/opt/puppetlabs/bin/puppet agent --test
-/opt/puppetlabs/bin/puppet agent --test
-#Tell us we have reached the end
+systemctl enable puppet-bootstrap
 echo "We have reached the end of the post-install script"
 ) 2>&1 | /usr/bin/tee /var/log/install-post-sh.log
 chvt 1
