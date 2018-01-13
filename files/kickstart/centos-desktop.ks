@@ -17,7 +17,7 @@ cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
 ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
 echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
-echo -e "Setting IP to $myip and HOSTNAME to $myhostname adding reservation"
+echo -e "Setting IP to $myip and HOSTNAME to $myhostname and adding reservation"
 %end
 
 network --noipv6 --onboot=yes --bootproto dhcp
