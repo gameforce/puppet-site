@@ -3,7 +3,7 @@ url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
-#%include /tmp/network.txt
+%include /tmp/network.txt
 
 %pre
 # Set the hostname
@@ -21,7 +21,7 @@ echo -e "Setting IP to $myip and HOSTNAME to $myhostname and adding reservation"
 #hostnamectl set-hostname $myhostname.stellarcreative.lab
 %end
 
-network --noipv6 --onboot=yes --bootproto dhcp --hostname $myhostname
+network --noipv6 --onboot=yes --bootproto dhcp
 authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/
 firewall --disabled
