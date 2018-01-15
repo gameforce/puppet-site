@@ -3,7 +3,6 @@ url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
-%include /tmp/network.txt
 
 %pre
 # Set the hostname
@@ -18,7 +17,7 @@ umount -l /mnt/tmp
 ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
 echo -e "NETWORKING=yes\nHOSTNAME=$myhostname.stellarcreative.lab" > /etc/sysconfig/network
 echo -e "Setting IP to $myip and HOSTNAME to $myhostname and adding reservation"
-#hostnamectl set-hostname $myhostname.stellarcreative.lab
+%include /tmp/network.txt
 %end
 
 network --noipv6 --onboot=yes --bootproto dhcp
