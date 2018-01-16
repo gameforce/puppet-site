@@ -51,8 +51,8 @@ part swap --size 2048 --fstype swap
 reboot
 
 # Package Repositories
-repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
-repo --name Stellar     --baseurl http://repo/stellar/x86_64
+repo --name CentOS-Base --baseurl http://repo/7/os/x86_64 --install
+repo --name Stellar --baseurl http://repo/stellar/x86_64 --install
 
 # Package Selection
 %packages --nobase --ignoremissing
@@ -74,6 +74,7 @@ nfs-utils
 autofs
 xfsprogs
 samba
+puppet
 puppet-bootstrap
 ## needed by maya
 libXp
@@ -110,7 +111,6 @@ export PATH
 
 rpm -ivh http://ftp.osuosl.org/pub/elrepo/elrepo/el7/x86_64/RPMS/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 yum -y update
-yum -y install puppet
 
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
