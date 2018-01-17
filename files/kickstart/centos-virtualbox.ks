@@ -95,8 +95,8 @@ xorg-x11-fonts-ISO8859-1-75dpi
 # Disable initial setup
 services --disabled="initial-setup-graphical"
 
-# Enable puppet-bootstrap
-services --enabled="puppet-bootstrap"
+# Enable puppet agent on boot
+services --enabled="puppet"
 
 %pre
 %end
@@ -117,9 +117,6 @@ yum -y update
 
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-
-# bootstap puppet
-#systemctl enable puppet-bootstrap
 
 echo "We have reached the end of the post-install script"
 ) 2>&1 | /usr/bin/tee /var/log/install-post-sh.log
