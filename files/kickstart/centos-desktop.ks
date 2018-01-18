@@ -3,25 +3,25 @@ url --url http://repo/centos/7.3/os/x86_64
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
-#%include /tmp/network.txt
 
 %pre
 # Set the hostname
 #!/bin/bash
-myip=$(ip route get 8.8.8.8 | awk '{print $NF;exit}')
-myhostname=box$(ip route get 172.16.10.2 | awk -F. '{print $NF;exit}')
-mymac=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
+IPADDR=$(ip route get 172.16.10.2 | awk '{print $NF;exit}')
+HOSTNAME=box$(ip route get 172.16.10.2 | awk -F. '{print $NF;exit}')
+HWADDR=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
 mkdir /mnt/tmp
 mount -o nolock syn:/volume1/systems /mnt/tmp
 cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
-ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $myip -ClientId $mymac -Description PXE -Name $myhostname"
-echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
-echo -e "Setting IP to $myip and HOSTNAME to $myhostname and adding reservation"
-/bin/hostname $myhostname.stellarcreative.lab
+ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $IPADDR -ClientId $HWADDR -Description PXE -Name $HOSTNAME"
+#echo -e "NETWORKING=yes\nHOSTNAME=$myhostname.stellarcreative.lab" > /etc/sysconfig/network
+echo "network --device eth0 --bootproto dhcp --noipv6 --onboot=yes --hostname=${HOSTNAME}" > /tmp/network.txt
+echo -e "Setting IP to $IPADDR and HOSTNAME to $HOSTNAME and adding reservation"
 %end
 
-network --noipv6 --onboot=yes --bootproto dhcp
+%include /tmp/network.txt
+#network --noipv6 --onboot=yes --bootproto dhcp
 authconfig --enableshadow --enablemd5
 rootpw --iscrypted $6$yshB3fNH$gNYCCumlYwENi31r/LYBe4jAqtLsXW1HnlaroUSJtgLK5nUAc8rXu2jdOAbUozuIjmJ2ZKv.N4S4.UwuftrQn/
 firewall --disabled
@@ -51,8 +51,8 @@ part swap --size 2048 --fstype swap
 reboot
 
 # Package Repositories
-repo --name CentOS-Base --baseurl http://repo/7/os/x86_64
-repo --name Stellar     --baseurl http://repo/stellar/x86_64
+repo --name CentOS-Base --baseurl http://repo/7/os/x86_64 --install
+repo --name Stellar --baseurl http://repo/stellar/x86_64 --install
 
 # Package Selection
 %packages --nobase --ignoremissing
@@ -74,6 +74,7 @@ nfs-utils
 autofs
 xfsprogs
 samba
+puppet
 puppet-bootstrap
 ## needed by maya
 libXp
@@ -94,6 +95,9 @@ xorg-x11-fonts-ISO8859-1-75dpi
 # Disable initial setup
 services --disabled="initial-setup-graphical"
 
+# Enable puppet agent on boot
+services --enabled="puppet"
+
 %pre
 %end
 
@@ -108,16 +112,13 @@ echo "################################"
 PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
 
-# install puppet, nux, kmod-nvidia and update
-#rpm -ivh https://yum.puppetlabs.com/el/7/PC1/x86_64/puppetlabs-release-pc1-1.1.0-5.el7.noarch.rpm
 rpm -ivh http://ftp.osuosl.org/pub/elrepo/elrepo/el7/x86_64/RPMS/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 yum -y update
-yum -y install puppet
 yum -y install kmod-nvidia
+
 ## google chrome repo and browser install
 yum localinstall -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-# bootstap puppet
-systemctl enable puppet-bootstrap
+
 echo "We have reached the end of the post-install script"
 ) 2>&1 | /usr/bin/tee /var/log/install-post-sh.log
 chvt 1
