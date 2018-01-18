@@ -52,7 +52,7 @@ reboot
 
 # Package Repositories
 repo --name CentOS-Base --baseurl http://repo/7/os/x86_64 --install
-repo --name Stellar --baseurl http://repo/stellar/x86_64 --install
+repo --name stellar --baseurl http://repo/stellar/x86_64 --install
 
 # Package Selection
 %packages --nobase --ignoremissing
