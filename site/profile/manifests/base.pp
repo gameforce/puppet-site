@@ -19,6 +19,14 @@ class profile::base {
     source => 'puppet:///files/stellar/stellar.sh',
     }
 
+  file { '/etc/bashrc':
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///files/stellar/bashrc',
+   }
+
   # mod 'saz-motd', '2.4.0'
   class { 'motd': }
 
