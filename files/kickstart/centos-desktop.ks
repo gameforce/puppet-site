@@ -109,11 +109,20 @@ echo "################################"
 echo "# Running Post Configuration   #"
 echo "################################"
 (
-PATH=/net/software/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/net/pipeline/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
 
+# Configure puppet
+mkdir -p /etc/puppetlabs/facter/facts.d
+echo "systype=desktop" > /etc/puppetlabs/facter/facts.d/systype.txt
+
+# Sync time and update
+/usr/sbin/ntpdate clock
+/sbin/hwclock -wu
+/usr/bin/yum -y update
+
+# Install nvidia driver
 rpm -ivh http://ftp.osuosl.org/pub/elrepo/elrepo/el7/x86_64/RPMS/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
-yum -y update
 yum -y install kmod-nvidia
 
 ## google chrome repo and browser install
