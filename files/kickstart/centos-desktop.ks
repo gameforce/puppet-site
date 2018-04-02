@@ -4,18 +4,26 @@ lang en_US.UTF-8
 keyboard us
 timezone --utc America/Vancouver
 
+#TODO Add nux, elrepo, google
+# Custom repos 
+repo --name=updates --baseurl=http://centos.fastbull.org/centos/6/updates/x86_64/
+repo --name=epel --baseurl=http://download.fedoraproject.org/pub/epel/7/x86_64/
+repo --name=puppetlabs --baseurl=http://yum.puppetlabs.com/el/7/PC1/x86_64/
+repo --name=puppetlabs_dependencies --baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64/
+repo --name site --baseurl http://repo/stellar/x86_64/
+
 %pre
 # Set the hostname
 #!/bin/bash
-IPADDR=$(ip route get 172.16.10.2 | awk '{print $NF;exit}')
-HOSTNAME=box$(ip route get 172.16.10.2 | awk -F. '{print $NF;exit}')
+IPADDR=$(ip route get 192.168.11.254 | awk '{print $NF;exit}')
+HOSTNAME=box$(ip route get 192.168.11.254 | awk -F. '{print $NF;exit}')
 HWADDR=$(ip link show eth0 | tail -1 | awk '{print $2}' | sed 's/://g')
 mkdir /mnt/tmp
-mount -o nolock syn:/volume1/systems /mnt/tmp
+mount -o nolock nfs:/data/systems /mnt/tmp
 cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
-ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $IPADDR -ClientId $HWADDR -Description PXE -Name $HOSTNAME"
-#echo -e "NETWORKING=yes\nHOSTNAME=$myhostname.stellarcreative.lab" > /etc/sysconfig/network
+ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 192.168.11.0 -IPAddress $IPADDR -ClientId $HWADDR -Description PXE -Name $HOSTNAME"
+echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
 echo "network --device eth0 --bootproto dhcp --noipv6 --onboot=yes --hostname=${HOSTNAME}" > /tmp/network.txt
 echo -e "Setting IP to $IPADDR and HOSTNAME to $HOSTNAME and adding reservation"
 %end
@@ -52,7 +60,7 @@ reboot
 
 # Package Repositories
 repo --name CentOS-Base --baseurl http://repo/7/os/x86_64 --install
-repo --name stellar --baseurl http://repo/stellar/x86_64
+repo --name site --baseurl http://repo/site/x86_64
 
 # Package Selection
 %packages --nobase --ignoremissing
@@ -76,20 +84,6 @@ xfsprogs
 samba
 puppet
 puppet-bootstrap
-## needed by maya
-libXp
-compat-libtiff3
-gamin
-libpng12
-wget
-tcsh
-Thunar
-audiofile
-audiofile-devel
-xorg-x11-fonts-100dpi
-xorg-x11-fonts-75dpi
-xorg-x11-fonts-ISO8859-1-100dpi
-xorg-x11-fonts-ISO8859-1-75dpi
 %end
 
 # Disable initial setup
@@ -109,7 +103,7 @@ echo "################################"
 echo "# Running Post Configuration   #"
 echo "################################"
 (
-PATH=/net/pipeline/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/net/systems/bin:/opt/puppetlabs/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
 
 # Configure puppet

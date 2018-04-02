@@ -8,11 +8,11 @@ yum::managed_repos:
   - site
 
 yum::repos:
-stellar:
+site:
 ensure: present
 enabled: true
 descr: 'Site Repo'
-baseurl: 'http://repo/gameforce/x86_64/'
+baseurl: 'http://repo/site/x86_64/'
 gpgcheck: false
 gpgkey: ''
 target: '/etc/yum.repos.d/site.repo'

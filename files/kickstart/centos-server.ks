@@ -3,12 +3,13 @@ skipx
 install
 url --url http://repo/centos/7.3/os/x86_64
 
-# Custom repos
+#TODO Add nux, elrepo, google
+# Custom repos 
 repo --name=updates --baseurl=http://centos.fastbull.org/centos/6/updates/x86_64/
 repo --name=epel --baseurl=http://download.fedoraproject.org/pub/epel/7/x86_64/
 repo --name=puppetlabs --baseurl=http://yum.puppetlabs.com/el/7/PC1/x86_64/
 repo --name=puppetlabs_dependencies --baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64/
-repo --name stellar --baseurl http://repo/stellar/x86_64/
+repo --name site --baseurl http://repo/stellar/x86_64/
 
 # General settings
 lang en_US.UTF-8
