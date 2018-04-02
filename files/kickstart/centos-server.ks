@@ -81,7 +81,7 @@ opts=""
 answer="n"
 device="eth0"
 hwaddr=`ifconfig $device | grep -i hwaddr | sed -e 's#^.*hwaddr[[:space:]]*##I'`
-dns1="172.16.10.2"
+dns1="192.168.11.2"
 dns2="8.8.8.8"
 
 curTTY=`tty`
@@ -110,6 +110,7 @@ fi
 sed -i -e 's#^\(HOSTNAME=\).*$#\1'"$hostname"'#' /etc/sysconfig/network
 echo GATEWAY=$gw >> /etc/sysconfig/network
 
+scrFile='/tmp/network.txt'
 echo DEVICE=$device > $scrFile
 echo BOOTPROTO=static >> $scrFile
 echo ONBOOT=yes >> $scrFile
