@@ -1,5 +1,0 @@
----
-  classes:
-    - role::base
-    - role::repo
-    - role::dconf
