@@ -1,3 +1,2 @@
-puppet setup for stellar creative
----------------------------------
-
+puppet setup for ubuntu
+-----------------------

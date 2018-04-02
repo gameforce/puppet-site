@@ -4,14 +4,14 @@ classes:
   - role::ssh
 
 yum::managed_repos:
-  - stellar
+  - gameforce
 
 yum::repos:
 stellar:
 ensure: present
 enabled: true
-descr: 'Stellar Repo'
-baseurl: 'http://repo/stellar/x86_64/'
+descr: 'Gameforce Repo'
+baseurl: 'http://repo/gameforce/x86_64/'
 gpgcheck: false
 gpgkey: ''
-target: '/etc/yum.repos.d/stellar.repo'
+target: '/etc/yum.repos.d/gameforce.repo'
