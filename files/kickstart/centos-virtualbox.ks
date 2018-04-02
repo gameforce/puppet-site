@@ -15,7 +15,7 @@ mount -o nolock syn:/volume1/systems /mnt/tmp
 cp -r /mnt/tmp/tools/.ssh /root
 umount -l /mnt/tmp
 ssh -o StrictHostKeyChecking=no administrator@ads1 "Add-DhcpServerv4Reservation -ScopeId 172.16.0.0 -IPAddress $IPADDR -ClientId $HWADDR -Description PXE -Name $HOSTNAME"
-#echo -e "NETWORKING=yes\nHOSTNAME=$myhostname.stellarcreative.lab" > /etc/sysconfig/network
+#echo -e "NETWORKING=yes\nHOSTNAME=$myhostname" > /etc/sysconfig/network
 echo "network --device eth0 --bootproto dhcp --noipv6 --onboot=yes --hostname=${HOSTNAME}" > /tmp/network.txt
 echo -e "Setting IP to $IPADDR and HOSTNAME to $HOSTNAME and adding reservation"
 %end
@@ -52,7 +52,7 @@ reboot
 
 # Package Repositories
 repo --name CentOS-Base --baseurl http://repo/7/os/x86_64 --install
-repo --name Stellar --baseurl http://repo/stellar/x86_64 --install
+repo --name Site Repo --baseurl http://repo/site/x86_64 --install
 
 # Package Selection
 %packages --nobase --ignoremissing

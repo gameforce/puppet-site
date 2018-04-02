@@ -1,15 +1,15 @@
 class profile::samba {
   
   class {'samba::server':
-    workgroup     => 'stellarcreative.lab',
-    server_string => "Samba Server on srv1",
+    workgroup     => 'domain.local',
+    server_string => "Site Samba Server",
     interfaces    => "eth0 lo",
     security      => 'share'
   }
 
   samba::server::share {'home':
     comment              => 'Home Directories',
-    path                 => '/data/net/home',
+    path                 => '/net/homes',
     guest_only           => false,
     guest_ok             => false,
     guest_account        => "none",

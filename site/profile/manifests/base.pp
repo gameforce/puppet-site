@@ -4,19 +4,19 @@ class profile::base {
   # includes
   include ::openvmtools
 
-  # stellar environment
-  #$stellarpath = '/net/pipeline/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
-  #file { '/etc/profile.d/stellar.sh':
-  #  content => "export PATH=${stellarpath}\n",
+  # site specific environment
+  #$sitepath = '/net/systems/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+  #file { '/etc/profile.d/site.sh':
+  #  content => "export PATH=${sitepath}\n",
   #  mode    => '0644'
   #}
 
-  file { '/etc/profile.d/stellar.sh':
+  file { '/etc/profile.d/site.sh':
     ensure => 'present',
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///files/stellar/stellar.sh',
+    source => 'puppet:///files/site/site.sh',
     }
 
   file { '/etc/bashrc':
@@ -24,7 +24,7 @@ class profile::base {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///files/stellar/bashrc',
+    source => 'puppet:///files/site/bashrc',
    }
 
   # mod 'saz-motd', '2.4.0'
@@ -32,7 +32,7 @@ class profile::base {
 
   # mod 'puppetlabs-ntp', '6.2.0'
   class { '::ntp':
-    servers => [ 'clock.stellarcreative.lab' ],
+    servers => [ 'clock' ],
   }
 
   # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
@@ -63,9 +63,9 @@ class profile::base {
 
   # mod 'walkamongus-sssd', '2.0.1'
   class { '::realmd':
-  domain               => 'stellarcreative.lab',
+  domain               => 'domain.local',
   domain_join_user     => 'domainjoin',
-  domain_join_password => '#thx1138',
+  domain_join_password => 'supersecretsauce',
   krb_ticket_join      => false,
   #  krb_keytab        => '/etc/keytab',
   manage_sssd_config   => true,

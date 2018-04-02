@@ -27,11 +27,11 @@ class profile::accounts {
     source  =>  'puppet:///files/ssh/id_rsa.pub'
   }
 
-  ssh_authorized_key { 'r10k@stellar':
+  ssh_authorized_key { 'r10k@site':
     ensure =>  present,
     user   =>  'root',
     type   =>  'ssh-rsa',
-    key    =>  'AAAAB3NzaC1yc2EAAAADAQABAAABAQC6WN9RbxpLn9oa3IArG6MVT4F7BySNyjKp10itqC38qqNkeEYy8oAHjHh56ErnmrONZ1OomKALaRblJypRo8jBqcULsn3B4R0NW37vMLCyCulk/YasyMiDtU+yE74gkIbTUkbV2Q8t2PHgq69aqKVs2cgXC3znvd93yjqSJEgUjQjzWDiHifs/BTWEFWFSQ1VpQoaKlRueN0048pXC3u6QDldmo82bJunW6FSkq7fkim+ADSOpT/ptxO0AkEetgflvB1cSh1Ar+eyOU0ljljBLp0D4ltjL2UU1HnwXn7o1CRW0JEyz/51PFK6OnwcgocGzmay3b5qd6Y6oPHznqCUp',
-    name   =>  'r10k@stellar',
+    key    =>  '<key>',
+    name   =>  'r10k@site',
   }
 }

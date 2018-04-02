@@ -20,13 +20,13 @@ class profile::packages {
        require  => Yumrepo["ius"],
     }
 
-    # enable pipeline toolbox on autostart
+    # enable tools on autostart
     file { '/etc/xdg/autostart/toolbox.desktop':
       ensure          =>  'present',
       owner           =>  'root',
       group           =>  'root',
       mode            =>  '0644',
-      source          =>  'puppet:///files/stellar/toolbox.desktop',
+      source          =>  'puppet:///files/site/toolbox.desktop',
     }
   }
   #elsif $facts['systype'] == 'server' {
