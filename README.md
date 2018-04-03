@@ -1,22 +1,22 @@
 ##Puppet agent/master setup for ubuntu 17.04
 
-### Install and configure ntp
+##### Install and configure ntp
 ```
 sudo apt-get install ntp ntpdate
 sudo ntpdate -u 0.ubuntu.pool.ntp.org
 ```
 
-### List the available time zones.
+##### List the available time zones.
 ```
 $ timedatectl list-timezones
 ```
 
-### Set the time zone using the following command.
+##### Set the time zone using the following command.
 ```
 $ sudo timedatectl set-timezone America/Vancouver
 ```
 
-### Get the PupperLabs repository and install it.
+##### Get the PupperLabs repository and install it.
 ```
 $ wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
 $ sudo dpkg -i puppetlabs-release-pc1-xenial.deb
