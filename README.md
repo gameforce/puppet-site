@@ -83,7 +83,7 @@ $ sudo /opt/puppetlabs/bin/puppet cert sign client.domain.local
 ```
 $ sudo /opt/puppetlabs/bin/puppet cert sign --all
 ```
-#### to revoke a certificate
+#### To revoke a certificate
 ```
 $ sudo /opt/puppetlabs/bin/puppet cert clean hostname
 ```
@@ -97,5 +97,5 @@ $ sudo /opt/puppetlabs/bin/puppet agent --test
 ```
 #### TODO: git repo and manifests
 ```
-more to come 
+more to come
 ```
