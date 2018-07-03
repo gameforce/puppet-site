@@ -1,4 +1,5 @@
-Procedure 10.9. Setting the org.gnome.login-screen.disable-user-list Key
+#RANDOM BITS
+Procedure for Setting the org.gnome.login-screen.disable-user-list Key
 
 Create or edit the gdm profile in /etc/dconf/profile/gdm which contains the following lines:
 user-db:user
@@ -11,3 +12,6 @@ Create a gdm database for machine-wide settings in /etc/dconf/db/gdm.d/00-login-
 disable-user-list=true
 Update the system databases by updating the dconf utility:
 # dconf update
+
+#TODO
+add procedure for new setup
