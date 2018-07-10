@@ -34,19 +34,9 @@ JAVA_ARGS="-Xms2g -Xmx2g
 ```
 JAVA_ARGS="-Xms1g -Xmx1g"
 ```
-#### Modify the Puppet master settings for your requirements.
+#### Copy the puppet configs over from files/puppet directory.
 ```
-$ vi /etc/puppetlabs/puppet/puppet.conf
-```
-#### Place the below lines.
-```
-[master]
-dns_alt_names = server.domain.local,server
-[main]
-certname = server.domain.local
-server = server.domain.local
-environment = production
-runinterval = 1h
+$ cp files/puppet/* /etc/puppetlabs/puppet/
 ```
 #### Start and enable the Puppet Server.
 ```
@@ -98,5 +88,12 @@ $ cat .ssh/id_rsa.pub (and paste into new key for gitlab/gihub)
 ```
 $ mkdir git;cd git;git clone git@github.com/gameforce/puppet-site puppet
 ```
-#### Edit your puppet manifests to match the site info like hostnames, domain
-#### names, ssh keys etc.
+#### Install and setup r10k and deploy
+```
+$ mkdir /etc/puppetlabs/r10k
+$ cp files/puppet/r10k.yaml /etc/puppetlabs/r10k
+$ /opt/puppetlabs/puppet/bin/gem install r10k
+$ /opt/puppetlabs/puppet/bin/r10k deploy environment -pv
+$ /opt/puppetlabs/puppet/bin/puppet agent --test
+```
+### Webhook setup

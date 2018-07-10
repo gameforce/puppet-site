@@ -22,15 +22,6 @@ class profile::accounts {
   }
 
   # ssh key we created on the puppet master during the install
-  file { '/root/.ssh/id_rsa':
-    ensure =>  'present',
-    owner  =>  'root',
-    group  =>  '0',
-    mode   =>  '0600',
-    source =>  'puppet:///files/ssh/id_rsa',
-  }
-
-  # ssh key we created on the puppet master during the install
   file { '/root/.ssh/id_rsa.pub':
     ensure  =>  'present',
     owner   =>  'root',
