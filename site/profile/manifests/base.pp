@@ -11,14 +11,6 @@ class profile::base {
     mode    => '0644'
   }
 
-  file { '/etc/profile.d/site.sh':
-    ensure => 'present',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///files/site/site.sh',
-    }
-
   file { '/etc/bashrc':
     ensure => 'present',
     owner  => 'root',
