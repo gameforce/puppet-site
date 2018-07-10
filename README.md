@@ -96,5 +96,7 @@ $ cat .ssh/id_rsa.pub (and paste into new key for gitlab/gihub)
 ```
 #### Now clone your puppet core repo
 ```
-$ git clone git@github.com/gameforce/puppet-site puppet
+$ mkdir git;cd git;git clone git@github.com/gameforce/puppet-site puppet
 ```
+#### Edit your puppet manifests to match the site info like hostnames, domain
+#### names, ssh keys etc.

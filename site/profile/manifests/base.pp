@@ -5,11 +5,11 @@ class profile::base {
   include ::openvmtools
 
   # site specific environment
-  #$sitepath = '/net/systems/bin:/usr/lib64/qt-3.3/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
-  #file { '/etc/profile.d/site.sh':
-  #  content => "export PATH=${sitepath}\n",
-  #  mode    => '0644'
-  #}
+  $sitepath = '/net/systems/bin:/opt/puppetlabs/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+  file { '/etc/profile.d/site.sh':
+    content => "export PATH=${sitepath}\n",
+    mode    => '0644'
+  }
 
   file { '/etc/profile.d/site.sh':
     ensure => 'present',
@@ -36,9 +36,9 @@ class profile::base {
   }
 
   # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
-  #sysctl::value { 'net.ipv6.conf.all.disable_ipv6':
-  #    value  => '1'
-  #}
+  sysctl::value { 'net.ipv6.conf.all.disable_ipv6':
+      value  => '1'
+  }
 
   # mod 'puppetlabs-firewall', '1.9.0'
   class { 'firewall':
@@ -63,9 +63,10 @@ class profile::base {
 
   # mod 'walkamongus-sssd', '2.0.1'
   class { '::realmd':
-  domain               => 'domain.local',
+  domain               => 'owi.lan',
+  # setup link for the domain join user: https://richardstk.com/2013/11/29/create-a-dedicated-account-to-join-computers-to-a-domain/
   domain_join_user     => 'domainjoin',
-  domain_join_password => 'supersecretsauce',
+  domain_join_password => '#thx1138',
   krb_ticket_join      => false,
   #  krb_keytab        => '/etc/keytab',
   manage_sssd_config   => true,

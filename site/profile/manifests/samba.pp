@@ -1,7 +1,7 @@
 class profile::samba {
-  
+
   class {'samba::server':
-    workgroup     => 'domain.local',
+    workgroup     => 'owi.lan',
     server_string => "Site Samba Server",
     interfaces    => "eth0 lo",
     security      => 'share'

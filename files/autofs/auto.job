@@ -1,5 +1,5 @@
 # managed by puppet
 # sb0 = storage bucket
 
-# nfs maps: Admin Data
+# nfs maps: Work Data
 files   -fstype=nfs,rw,soft  sb0:/data/files

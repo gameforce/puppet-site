@@ -8,7 +8,7 @@ include '::cups'
     enabled   => 'true',
     accepting => 'true',
     ppd       => '/usr/share/cups/model/WF-3720.ppd',
-    uri       => 'lpd://172.16.21.37:515/PASSTHRU'
+    uri       => 'lpd://<IP of printer>:515/PASSTHRU'
   }
 
   file { '/usr/share/cups/model/WF-3720.ppd':

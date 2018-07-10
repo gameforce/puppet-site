@@ -9,25 +9,25 @@ class profile::packages {
       package { 'epson-inkjet-printer-escpr2': ensure => 'installed', }
 
     # ius repo and package for python3
-    yumrepo { 'ius':
-       baseurl  => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch',
-       descr    => 'ius',
-       gpgcheck => '0',
-       enabled  => '1',
-    }
-    package { python36u:
-       ensure   => present,
-       require  => Yumrepo["ius"],
-    }
+    #yumrepo { 'ius':
+    #   baseurl  => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/$basearch',
+    #   descr    => 'ius',
+    #   gpgcheck => '0',
+    #   enabled  => '1',
+    #}
+    #package { python36u:
+    #   ensure   => present,
+    #   require  => Yumrepo["ius"],
+    #}
 
     # enable tools on autostart
-    file { '/etc/xdg/autostart/toolbox.desktop':
-      ensure          =>  'present',
-      owner           =>  'root',
-      group           =>  'root',
-      mode            =>  '0644',
-      source          =>  'puppet:///files/site/toolbox.desktop',
-    }
+    #file { '/etc/xdg/autostart/toolbox.desktop':
+    #  ensure          =>  'present',
+    #  owner           =>  'root',
+    #  group           =>  'root',
+    #  mode            =>  '0644',
+    #  source          =>  'puppet:///files/site/toolbox.desktop',
+    #}
   }
   #elsif $facts['systype'] == 'server' {
   #   #notify {"this is a $systype Installing server packages" :}
