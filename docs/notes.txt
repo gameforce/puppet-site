@@ -15,3 +15,11 @@ Update the system databases by updating the dconf utility:
 
 #TODO
 add procedure for new setup
+
+#CAMS
+https://blog.chef.io/2010/07/16/what-devops-means-to-me/
+
+Culture
+Automation
+Measurement
+Sharing

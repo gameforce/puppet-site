@@ -1,8 +1,8 @@
-## Puppet agent/master setup for ubuntu 17.04
-#### Install and configure ntp
+## Puppet agent/master setup for CentOS 7
+#### Install and configure ntp and a few requirements
 ```
-sudo apt-get install ntp ntpdate
-sudo ntpdate -u 0.ubuntu.pool.ntp.org
+$ yum install ntp ntpdate wget git
+$ ntpdate -u 0.centos.pool.ntp.org
 ```
 #### List the available time zones.
 ```
@@ -10,35 +10,35 @@ $ timedatectl list-timezones
 ```
 #### Set the time zone using the following command.
 ```
-$ sudo timedatectl set-timezone America/Vancouver
+$ timedatectl set-timezone America/Vancouver
 ```
-#### Get the PupperLabs repository and install it.
+#### Get the PupperLabs repository, install it and update the repo.
 ```
-$ wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-$ sudo dpkg -i puppetlabs-release-pc1-xenial.deb
-$ sudo apt-get update
+$ wget https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+$ yum install puppetlabs-release-pc1-el-7.noarch.rpm
+$ yum -y update
 ```
 #### Install the Puppet server using below command, do not start it yet.
 ```
-$ sudo apt-get install -y puppetserver
+$ yum install -y puppetserver
 ```
 #### If you need to change the value of memory allocation, edit the below file.
 ```
-$ sudo nano /etc/default/puppetserver
+$ vi /etc/sysconfig/puppetserver
 ```
 #### Change the value shown like below
 ```
 JAVA_ARGS="-Xms2g -Xmx2g
 ```
-#### Use 1024 or 512:
+#### Use 1024 or 512 for a vm, otherwise leave the default 2gb:
 ```
 JAVA_ARGS="-Xms1g -Xmx1g"
 ```
 #### Modify the Puppet master settings for your requirements.
 ```
-$ sudo vim /etc/puppetlabs/puppet/puppet.conf
+$ vi /etc/puppetlabs/puppet/puppet.conf
 ```
-#### Place the below lines. Modify it according to your environment.
+#### Place the below lines.
 ```
 [master]
 dns_alt_names = server.domain.local,server
@@ -50,25 +50,16 @@ runinterval = 1h
 ```
 #### Start and enable the Puppet Server.
 ```
-$ sudo systemctl start puppetserver
-$ sudo systemctl enable puppetserver
+$ systemctl start puppetserver
+$ systemctl enable puppetserver
 ```
-#### Install the puppet agent using below command.
+#### Install the puppet agent using below command. As of newer versions it should already be installed
 ```
-$ sudo apt-get install -y puppet-agent
-```
-#### Edit the puppet configuration file and set puppet master information and set “server” value to your master node name.
-```
-$ sudo vim /etc/puppetlabs/puppet/puppet.conf
-[main]
-certname = client.domain.local
-server = server.domain.local
-environment = production
-runinterval = 1h
+$ yum install -y puppet-agent
 ```
 #### Start puppet agent on the node and make it start automatically on system boot.
 ```
-$ sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+$ /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 ```
 #### Log into the puppet master server and run below command to view outstanding cert sign requests.
 ```
@@ -95,7 +86,15 @@ $ sudo /opt/puppetlabs/bin/puppet cert list --all
 ```
 $ sudo /opt/puppetlabs/bin/puppet agent --test
 ```
-#### TODO: git repo and manifests
+#### Setup ssh keys for the root user on the puppet master
 ```
-more to come
+$ ssh-keygen -t rsa -C root@puppet
+```
+#### Add your key to your git repo so that you can clone it
+```
+$ cat .ssh/id_rsa.pub (and paste into new key for gitlab/gihub)
+```
+#### Now clone your puppet core repo
+```
+$ git clone git@github.com/gameforce/puppet-site puppet
 ```
