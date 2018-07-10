@@ -1,6 +1,6 @@
 class profile::kickstart {
    # install tftp
-   package { 'tftp': ensure => 'installed', }
+   package { 'tftp-server': ensure => 'installed', }
 
    # pxe default menu
    file { '/var/lib/tftpboot/pxelinux.cfg/default':
