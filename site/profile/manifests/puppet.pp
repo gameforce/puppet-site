@@ -32,8 +32,4 @@ class profile::puppet {
     user    => 'puppet',
     group   => 'puppet',
   }
-
-  #class { '::r10k::webhook::package':
-  #  webrick_version    => '1.31',
-  #}
 }
