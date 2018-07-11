@@ -2,6 +2,14 @@ class profile::kickstart {
    # install tftp
    package { 'tftp-server': ensure => 'installed', }
 
+   # pxelinux.cfg directory
+   file { '/var/lib/tftpboot/pxelinux.cfg':
+     ensure => 'directory',
+     owner  => 'root',
+     group  => 'root',
+     mode   => '0755',
+   }
+
    # pxe default menu
    file { '/var/lib/tftpboot/pxelinux.cfg/default':
      ensure => 'present',
