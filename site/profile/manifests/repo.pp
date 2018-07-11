@@ -13,7 +13,7 @@ class profile::repo {
   }
 
   # ks directory for kickstart configs
-  file { '/var/www/html/repo/ks':
+  file { '/var/www/html/vhosts/repo/ks':
     ensure => 'directory',
     owner  => 'root',
     group  => 'root',
