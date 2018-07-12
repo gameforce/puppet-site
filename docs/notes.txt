@@ -23,3 +23,15 @@ Culture
 Automation
 Measurement
 Sharing
+
+
+================= r10k deployment and final bits
+
+copy fileserver and hiera.yaml to /etc/puppetlabs/puppet/
+reload puppetserver
+setup domainjoin user on AD
+mkdir /etc/puppetlabs/r10k
+cp files/puppet/r10k.yaml /etc/puppetlabs/r10k
+/opt/puppetlabs/puppet/bin/gem install r10k
+/opt/puppetlabs/puppet/bin/r10k deploy environment -pv
+/opt/puppetlabs/puppet/bin/puppet agent --test
