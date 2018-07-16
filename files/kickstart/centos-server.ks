@@ -1,15 +1,13 @@
 text
 skipx
 install
-url --url http://repo/centos/7.3/os/x86_64
+url --url http://mirror.centos.org/centos/7/os/x86_64/
 
-#TODO Add nux, elrepo, google
-# Custom repos 
-repo --name=updates --baseurl=http://centos.fastbull.org/centos/6/updates/x86_64/
+# Custom repos
+repo --name=updates --baseurl=http://mirror.centos.org/centos/7/updates/x86_64/
 repo --name=epel --baseurl=http://download.fedoraproject.org/pub/epel/7/x86_64/
 repo --name=puppetlabs --baseurl=http://yum.puppetlabs.com/el/7/PC1/x86_64/
 repo --name=puppetlabs_dependencies --baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64/
-repo --name site --baseurl http://repo/site/x86_64/
 
 # General settings
 lang en_US.UTF-8
@@ -81,7 +79,7 @@ opts=""
 answer="n"
 device="eth0"
 hwaddr=`ifconfig $device | grep -i hwaddr | sed -e 's#^.*hwaddr[[:space:]]*##I'`
-dns1="192.168.11.2"
+dns1="192.168.10.10"
 dns2="8.8.8.8"
 
 curTTY=`tty`
