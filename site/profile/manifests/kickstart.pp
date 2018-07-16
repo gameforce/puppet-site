@@ -22,15 +22,6 @@ class profile::kickstart {
    }
 
    # kickstart setup
-   file { '/var/www/html/vhosts/repo/ks/centos-desktop.ks':
-     ensure => 'present',
-     owner  => 'root',
-     group  => 'root',
-     mode   => '0644',
-     source => 'puppet:///files/kickstart/centos-desktop.ks',
-     notify =>  Service['httpd'],
-   }
-
    file { '/var/www/html/vhosts/repo/ks/centos-server.ks':
      ensure => 'present',
      owner  => 'root',
@@ -39,13 +30,5 @@ class profile::kickstart {
      source => 'puppet:///files/kickstart/centos-server.ks',
      notify =>  Service['httpd'],
    }
-
-   file { '/var/www/html/vhosts/repo/ks/centos-virtualbox.ks':
-     ensure => 'present',
-     owner  => 'root',
-     group  => 'root',
-     mode   => '0644',
-     source => 'puppet:///files/kickstart/centos-virtualbox.ks',
-     notify =>  Service['httpd'],
-   }
+  # windows stuff here   
 }
