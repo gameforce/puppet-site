@@ -77,7 +77,7 @@ class profile::base {
       'access_provider'                => 'ad',
       'krb5_store_password_if_offline' => 'True',
       'default_shell'                  => '/bin/bash',
-      'ldap_id_mapping'                => false,
+      'ldap_id_mapping'                => true,
       'enumerate'                      => true,
       'fallback_homedir'               => '/home/%u',
       },
