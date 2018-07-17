@@ -12,7 +12,7 @@ key="$1"
 #       user account name or password.
 credfile="/etc/auto.smb.$key"
 # Note: Use cifs instead of smbfs:
-mountopts="-fstype=cifs,file_mode=0644,dir_mode=0755,uid=1269001104,gid='domain users'"
+mountopts="-fstype=cifs,file_mode=0644,dir_mode=0755,uid=domainjoin,gid=domain users"
 smbclientopts=""
 for P in /bin /sbin /usr/bin /usr/sbin
 do
