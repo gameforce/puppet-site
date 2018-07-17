@@ -32,6 +32,7 @@ class profile::autofs {
       cifs => {
         mountpoint  => '/cifs',
         file_source => 'puppet:///files/autofs/auto.smb.data',
+      }
     }
   }
 }
