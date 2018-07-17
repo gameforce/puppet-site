@@ -10,15 +10,6 @@ class profile::autofs {
     notify => Service['autofs'],
   }
 
-  file { '/etc/autofs.cifs':
-    ensure => 'present',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-    source => 'puppet:///files/autofs/autofs.cifs',
-    notify => Service['autofs'],
-  }
-
   class { 'autofs':
     mount_files     => {
       job => {
@@ -31,7 +22,7 @@ class profile::autofs {
       },
       cifs => {
         mountpoint  => '/cifs',
-        file_source => 'puppet:///files/autofs/autofs.cifs',
+        file_source => 'puppet:///files/autofs/auto.cifs',
       }
     }
   }
