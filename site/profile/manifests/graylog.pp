@@ -34,8 +34,8 @@ elasticsearch::instance { 'graylog':
   class { 'graylog::server':
     package_version => '2.4.0-9',
     config          => {
-      'password_secret' => '...',    # Fill in your password secret
-      'root_password_sha2' => '...', # Fill in your root password hash
+      'password_secret' => 'glpass0',    # Fill in your password secret
+      'root_password_sha2' => '78A8FEE4F288990B5D0C27DDB5B6D36B5937E2ABFE11F2F6BCE99052F4DAB89C', # Fill in your root password hash
      }
   }
 }
