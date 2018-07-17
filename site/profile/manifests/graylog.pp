@@ -1,5 +1,7 @@
 class profile::graylog {
 
+  include ::java
+
   class { 'mongodb::globals':
      manage_package_repo => true,
   }->
@@ -20,10 +22,11 @@ elasticsearch::instance { 'graylog':
     'network.host' => '127.0.0.1',
   }
 }
-elasticsearch::user { 'esuser':
-  password         => 'espass0',
-  roles            => ['admin'],
-}
+
+#elasticsearch::user { 'esuser':
+#  password         => 'espass0',
+#  roles            => ['admin'],
+#}
 
   class { 'graylog::repository':
     version => '2.4'
