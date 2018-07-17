@@ -13,15 +13,18 @@ class profile::graylog {
  class { 'elasticsearch':
    version      => '5.5.1',
  }
-    elasticsearch::instance { 'graylog':
-    config => {
-      'cluster.name' => 'graylog',
-      'network.host' => '127.0.0.1',
+
+elasticsearch::instance { 'graylog':
+  config => {
+    'cluster.name' => 'graylog',
+    'network.host' => '127.0.0.1',
   }
-    elasticsearch::user { 'esuser':
-    password => 'espass0',
-    roles    => ['admin'],
-  }
+}
+elasticsearch::user { 'esuser':
+  password         => 'espass0',
+  roles            => ['admin'],
+}
+
   class { 'graylog::repository':
     version => '2.4'
   }->
