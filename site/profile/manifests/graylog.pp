@@ -22,7 +22,6 @@ class profile::graylog {
     password => 'espass0',
     roles    => ['admin'],
   }
-}
   class { 'graylog::repository':
     version => '2.4'
   }->
