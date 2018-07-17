@@ -8,7 +8,7 @@ class profile::graylog {
   }
   class { 'elasticsearch':
     version      => '5.5.1',
-    #repo_version => '5.x',
+  }
     elasticsearch::instance { 'graylog':
     config => {
       'cluster.name' => 'graylog',
