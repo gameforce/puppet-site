@@ -9,7 +9,6 @@ class profile::graylog {
   class { 'elasticsearch':
     version      => '5.5.1',
     #repo_version => '5.x',
-    manage_repo  => true,
   }->
   elasticsearch::instance { 'graylog':
     config => {
