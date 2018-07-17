@@ -10,6 +10,15 @@ class profile::autofs {
     notify => Service['autofs'],
   }
 
+  file { '/etc/auto.smb.ad0':
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0600',
+    source => 'puppet:///files/autofs/auto.smb.ad0',
+    notify => Service['autofs'],
+  }
+
   class { 'autofs':
     mount_files     => {
       job => {
