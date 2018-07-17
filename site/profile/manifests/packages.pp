@@ -44,5 +44,6 @@ class profile::packages {
     package { 'vim-enhanced': ensure => 'installed', }
     package { 'htop': ensure => 'installed', }
     package { 'net-tools': ensure => 'installed', }
+    package { 'cifs-utils': ensure => 'installed', }
   }
 }
