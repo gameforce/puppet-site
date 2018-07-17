@@ -27,10 +27,10 @@ class profile::base {
     servers => [ 'clock' ],
   }
 
-  # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind
-  sysctl::value { 'net.ipv6.conf.all.disable_ipv6':
-      value  => '1'
-  }
+  # Disable ipv6 via sysctl run dracut -f if it breaks rpcbind -- not needed if we kickstart install 
+  #sysctl::value { 'net.ipv6.conf.all.disable_ipv6':
+  #    value  => '1'
+  #}
 
   # mod 'puppetlabs-firewall', '1.9.0'
   class { 'firewall':
