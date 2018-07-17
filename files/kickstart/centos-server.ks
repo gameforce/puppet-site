@@ -137,10 +137,7 @@ echo "systype=server" > /etc/puppetlabs/facter/facts.d/systype.txt
 /usr/bin/yum -y update
 
 # bootstap puppet
-echo -n "Running puppet for the first time..."
-sleep 5
-/opt/puppetlabs/bin/puppet agent --test
-/opt/puppetlabs/bin/puppet agent --test
+# TODO Find an intelligent way to bootstrap puppet after the first boot
 
 #Tell us we have reached the end
 echo "We have reached the end of the post-install script"
