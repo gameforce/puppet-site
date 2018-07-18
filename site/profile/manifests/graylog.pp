@@ -29,7 +29,7 @@ elasticsearch::instance { 'graylog':
 #}
 
   class { 'graylog::repository':
-    version => '2.4.6'
+    version => '2.4'
   }->
   class { 'graylog::server':
     package_version           => '2.4.0-9',
