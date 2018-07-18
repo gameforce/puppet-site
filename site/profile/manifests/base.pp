@@ -80,6 +80,7 @@ class profile::base {
       'ldap_id_mapping'                => true,
       'ldap_idmap_range_min'           => '1000',
       'ldap_idmap_range_max'           => '2000',
+      'ldap_idmap_range_size'          => '1000',
       'enumerate'                      => true,
       'fallback_homedir'               => '/home/%u',
       },
