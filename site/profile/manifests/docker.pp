@@ -3,9 +3,8 @@ class profile::docker {
   include 'docker'
 
   docker::registry {'https://index.docker.io/v1/':
-  #username => 'darf',
-  #password => '!mtFbwy77-docker',
-  auth =>   'ZGFyZjohbXRGYnd5NzctZG9ja2Vy',
+  username => 'darf',
+  password => '!mtFbwy77-docker',
 }
 
   docker::run { 'sickrage':
