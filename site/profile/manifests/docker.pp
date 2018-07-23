@@ -2,6 +2,11 @@
 class profile::docker {
   include 'docker'
 
+  docker::registry { 'registry-1.docker.io'}
+  username => 'darf',
+  password => '!mtFbwy77-docker',
+}
+
   docker::run { 'sickrage':
   image   => 'sickrage:sickrage',
   command => '',
