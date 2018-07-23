@@ -7,11 +7,11 @@ class profile::docker {
   password => '!mtFbwy77-docker',
 }
 
-  docker::run { 'sickrage':
-  image   => 'sickrage:sickrage',
+  docker::run { 'sickrage:sickrage':
+  image   => 'sickrage/sickrage',
   detach  => true,
   command => '',
   volumes => ['config:/opt/sickrage/config', 'downloads:/net/systems/downloads', 'series:/net/series', 'localtime:/etc/localtime:ro',],
-  ports   => ['8081', '8081'],
+  ports   => ['8081'],
   }
 }
