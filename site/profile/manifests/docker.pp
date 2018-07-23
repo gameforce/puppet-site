@@ -8,7 +8,7 @@ class profile::docker {
 }
 
   docker::run { 'sickrage':
-  image   => 'sickrage',
+  image   => 'sickrage:sickrage',
   detach  => true,
   command => '',
   volumes => ['config:/opt/sickrage/config', 'downloads:/net/systems/downloads', 'series:/net/series', 'localtime:/etc/localtime:ro',],
