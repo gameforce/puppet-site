@@ -7,7 +7,7 @@ class profile::docker {
   password => '!mtFbwy77-docker',
 }
 
-  docker::run { 'sickrage/sickrage':
+  docker::run { 'sickrage':
   image   => 'sickrage:sickrage',
   detach  => true,
   command => '',
