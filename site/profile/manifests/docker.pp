@@ -2,7 +2,7 @@
 class profile::docker {
   include 'docker'
 
-  docker::registry {'https://index.docker.io/v1/':
+  docker::registry {'https://registry-1.docker.io/v2/':
   username => 'darf',
   password => '!mtFbwy77-docker',
 }
