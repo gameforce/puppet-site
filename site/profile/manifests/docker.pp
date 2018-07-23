@@ -11,7 +11,7 @@ class profile::docker {
   image   => 'sickrage/sickrage',
   detach  => true,
   command => '',
-  volumes => ['config:/opt/sickrage/config', 'downloads:/tmp', 'series:/tmp', 'localtime:/etc/localtime:ro',],
+  volumes => ['config:/opt/sickrage/config', 'downloads:/tmp/downloads', 'tv:/tmp/tv', '/etc/localtime:/etc/localtime:ro',],
   ports   => ['8082'],
   }
 }
