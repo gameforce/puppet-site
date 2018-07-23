@@ -5,10 +5,7 @@ class profile::docker {
   docker::run { 'sickrage':
   image   => 'sickrage:sickrage',
   command => '',
-  volumes => ['config:/opt/sickrage/config'],
-  volumes => ['downloads:/net/systems/downloads'],
-  volumes => ['series:/net/series'],
-  volumes => ['localtime:/etc/localtime:ro'],
+  volumes => ['config:/opt/sickrage/config', 'downloads:/net/systems/downloads', 'series:/net/series', 'localtime:/etc/localtime:ro',],
   ports   => ['8081', '8081'],
   }
 }
