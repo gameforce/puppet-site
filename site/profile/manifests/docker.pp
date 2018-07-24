@@ -12,6 +12,6 @@ docker::run {'sickrage':
   detach  => true,
   env     => ['PGID=1000', 'PUID=502', 'TZ=America/Vancouver', ],
   volumes => ['/opt/sickrage/config:/config', '/tmp/downloads:/downloads', '/tmp/tv:/tv', ],
-  ports   => ['8082:8082'],
+  ports   => ['8082:8081'],
   }
 }
