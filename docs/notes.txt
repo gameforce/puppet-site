@@ -38,3 +38,9 @@ cp files/puppet/r10k.yaml /etc/puppetlabs/r10k
 /opt/puppetlabs/puppet/bin/gem install r10k
 /opt/puppetlabs/puppet/bin/r10k deploy environment -pv
 /opt/puppetlabs/puppet/bin/puppet agent --test
+
+
+https://github.com/OffworldIndustries/control-repo
+
+# install puppet
+yum localinstall https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
